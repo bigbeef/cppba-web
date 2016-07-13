@@ -5,7 +5,7 @@
  *github:https://github.com/bigbeef
  */
 
-//获取项目路径
+//获取项目相对路径
 function getPath() {
     return $('head').attr('href');
 }

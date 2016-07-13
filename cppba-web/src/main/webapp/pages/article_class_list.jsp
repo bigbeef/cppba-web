@@ -11,8 +11,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    <link href="${pageContext.request.contextPath}/css/select.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/Globals.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/article_class_list.js"></script>

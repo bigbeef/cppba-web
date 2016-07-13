@@ -11,8 +11,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    <link href="${pageContext.request.contextPath}/css/select.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.css"  />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/Globals.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/article_list.js"></script>
@@ -33,8 +33,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="usual1" class="usual">
             <ul class="seachform">
                 <li><label>标题查询</label><input id="likeName" name="" type="text" class="scinput" /></li>
-                <li><label>&nbsp;</label><input id="search" type="button" class="scbtn" value="查询"/></li>
-                <li><label>&nbsp;</label><input id="add" type="button" class="scbtn" value="新增"/></li>
+                <li><label>&nbsp;</label>
+                    <input id="search" type="button" class="scbtn" value="查询"/>
+                </li>
+                <li><label>&nbsp;</label>
+                    <input id="add" type="button" class="scbtn" value="新增"
+                           onclick="location.href='article_add.jsp'"/>
+                </li>
             </ul>
             <table class="tablelist">
                 <thead>
