@@ -25,12 +25,32 @@ $(function () {
     });
 })
 
+//提交
 function submit(){
     var content = editor.getMarkdown();
     var article_class = $("#article_class").val();
     var title = $("#title").val();
     var abstracts = $("#abstracts").val();
-    alert(abstracts);
+    var userId = $("#userId").val();
+    var sure = confirm("确认操作吗?");
+    if(sure){
+        $.ajax({
+            type: 'POST',
+            url: getPath() + '/article_saveOrUpdate.htm',
+            data: {userId: userId,articleClassId:article_class,content:content,
+                title:title,abstracts:abstracts,articleId:articleId},
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                if (data.result == 1) {
+                    alert("操作成功！");
+                    location.href="article_list.jsp";
+                } else {
+                    alert(data.msg);
+                }
+            }
+        })
+    }
 }
 
 //加载文章分类列表

@@ -18,7 +18,7 @@ public interface ArticlesService {
 
 	void update(Articles articles);
 
-	Articles findById(int id);
+	Articles findById(long id);
 
 	PageEntity<Articles> query(BaseDto baseDto);
 }

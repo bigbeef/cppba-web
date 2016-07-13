@@ -28,7 +28,7 @@
 </head>
 
 <body>
-
+<input id="userId" type="hidden" value="${user.userId}"/>
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">

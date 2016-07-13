@@ -51,4 +51,8 @@ function list_articleClass(){
             }
         }
     })
+}了
+
+function load_articleClass(articleId){
+    ocation.href="article_add.jsp?articleId="+articleId;
 }

@@ -15,7 +15,6 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * 开发者
@@ -46,7 +45,7 @@ public class ArticlesServiceImpl implements ArticlesService{
 	}
 
 	@Override
-	public Articles findById(int id) {
+	public Articles findById(long id) {
 		return (Articles) articlesDao.get(Articles.class, id);
 	}
 

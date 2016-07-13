@@ -2,7 +2,6 @@ package com.cppba.web;
 
 import com.cppba.core.bean.PageEntity;
 import com.cppba.core.util.CommonUtil;
-import com.cppba.dto.ArticleClassDto;
 import com.cppba.dto.ArticlesDto;
 import com.cppba.entity.ArticleClass;
 import com.cppba.entity.Articles;
@@ -39,7 +38,7 @@ public class ArticlesAction {
     private ArticleClassService articleClassService;
 
     /**
-     * 文章类别查询
+     * 文章查询
      */
     @RequestMapping("article_query.htm")
     public void article_query(
@@ -72,6 +71,45 @@ public class ArticlesAction {
             }
             map1.put("articles",list);
             map1.put("count",pe.getCount());
+            map = CommonUtil.parseJson("1","操作成功",map1);
+        }catch (Exception e){
+            map = CommonUtil.parseJson("2","操作异常","");
+            logger.error(e.getMessage(),e);
+        }
+        CommonUtil.responseBuildJson(response,map);
+    }
+
+    /**
+     * 文章保存或修改
+     */
+    @RequestMapping("article_saveOrUpdate.htm")
+    public void article_saveOrUpdate(
+            HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(value="articleId", defaultValue="0")long articleId,
+            @RequestParam(value="userId", defaultValue="0")long userId,
+            @RequestParam(value="articleClassId", defaultValue="0")long articleClassId,
+            @RequestParam(value="title", defaultValue="")String title,
+            @RequestParam(value="abstracts", defaultValue="")String abstracts,
+            @RequestParam(value="content", defaultValue="") String content){
+        Map<String,Object> map = new HashMap<>();
+        try {
+            Map<String,Object> map1 = new HashMap<>();
+            Articles article = articlesService.findById(articleId);
+            boolean isNew = false;
+            if(article == null){
+                isNew = true;
+                article = new Articles();
+            }
+            article.setUserId(userId);
+            article.setAbstracts(abstracts);
+            article.setArticleClassId(articleClassId);
+            article.setTitle(title);
+            article.setContent(content);
+            if(isNew){
+                articlesService.save(article);
+            }else{
+                articlesService.update(article);
+            }
             map = CommonUtil.parseJson("1","操作成功",map1);
         }catch (Exception e){
             map = CommonUtil.parseJson("2","操作异常","");
