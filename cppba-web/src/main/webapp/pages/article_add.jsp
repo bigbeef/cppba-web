@@ -14,59 +14,17 @@
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.css"  />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editormd.css" />
+    <style type="text/css">
+        #markdown select{opacity:1;filter:alpha(opacity=1);}
+        #markdown li{margin-bottom: 0px;}
+    </style>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/Globals.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/select-ui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/editormd.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/article_add.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/epic_editor/js/epiceditor.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function(e) {
-            $(".select2").uedSelect({
-                width : 167
-            });
-            //教程地址   http://epiceditor.com/
-            var opts = {
-                container: 'epiceditor',
-                textarea: null,
-                basePath: 'epiceditor',
-                clientSideStorage: true,
-                localStorageName: 'epiceditor',
-                useNativeFullscreen: true,
-                parser: marked,
-                file: {
-                    name: 'epiceditor',
-                    defaultContent: '',
-                    autoSave: 100
-                },
-                theme: {
-                    base: getPath()+'/epic_editor/themes/base/epiceditor.css',
-                    preview:  getPath()+'/epic_editor/themes/preview/preview-dark.css',
-                    editor:  getPath()+'/epic_editor/themes/editor/epic-dark.css'
-                },
-                button: {
-                    preview: true,
-                    fullscreen: true,
-                    bar: "auto"
-                },
-                focusOnLoad: false,
-                shortcut: {
-                    modifier: 18,
-                    fullscreen: 70,
-                    preview: 80
-                },
-                string: {
-                    togglePreview: 'Toggle Preview Mode',
-                    toggleEdit: 'Toggle Edit Mode',
-                    toggleFullscreen: 'Enter Fullscreen'
-                },
-                autogrow: {
-                    minHeight:500, 
-                    maxHeight:800
-                }
-            }
-            var editor = new EpicEditor(opts).load();
-        });
-    </script>
+
 </head>
 
 <body>
@@ -100,16 +58,18 @@
                 </select>
             </div>
         </li>
-        <li><label>文章标题</label><input name="" type="text" class="dfinput"/><i>标题不能超过30个字符</i></li>
+        <li><label>文章标题</label><input id="title" name="" type="text" class="dfinput"/><i>标题不能超过30个字符</i></li>
         <li><label>文章简介</label>
-            <textarea name="" cols="" rows="" class="textinput"></textarea><i>用于首页展示</i>
+            <textarea id="abstracts" name="" cols="" rows="" class="textinput"></textarea><i>用于首页展示</i>
         </li>
         <li><label>文章内容</label><%--<textarea name="" cols="" rows="" class="textinput"></textarea>--%>
             <div style="height: 800px;">
-                <div id="epiceditor"></div>
+                <div style="margin-left: -86px;">
+                    <div id="markdown"></div>
+                </div>
             </div>
         </li>
-        <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认保存"/></li>
+        <li><label>&nbsp;</label><input id="submit" name="" type="button" class="btn" value="确认保存"/></li>
     </ul>
 </div>
 </body>

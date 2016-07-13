@@ -4,13 +4,37 @@
  *email:245655812@qq.com
  *github:https://github.com/bigbeef
  */
-$(function(){
+var editor,articleId;
+$(function () {
+    articleId = GetQueryString("articleId") |0;
+    //初始化markdown
+    editor = editormd("markdown", {
+        width  : "90%",
+        height : 720,
+        path   : '../lib/'
+    });
     //加载文章分类列表
-    list_articleClass();  
+    list_articleClass();
+    //提交
+    $("#submit").click(function(){
+        submit();
+    })
+    //初始化select
+    $(".select2").uedSelect({
+        width: 167
+    });
 })
 
+function submit(){
+    var content = editor.getMarkdown();
+    var article_class = $("#article_class").val();
+    var title = $("#title").val();
+    var abstracts = $("#abstracts").val();
+    alert(abstracts);
+}
+
 //加载文章分类列表
-function list_articleClass(){
+function list_articleClass() {
     $.ajax({
         type: 'POST',
         url: getPath() + '/articleClass_query.htm',
@@ -22,9 +46,10 @@ function list_articleClass(){
                 var articleClasss = data.data.articleClasss;
                 $("#article_class").html("");
                 var html = "";
-                for(var i=0;i<articleClasss.length;i++){
+                for (var i = 0; i < articleClasss.length; i++) {
                     var articleClass = articleClasss[i].articleClass;
-                    html += '<option value="'+articleClass.articleClassId+'">'+articleClass.name+'</option>';
+                    var selected = "";
+                    html += '<option value="' + articleClass.articleClassId + '">' + articleClass.name + '</option>';
                 }
                 $("#article_class").html(html);
             } else {
