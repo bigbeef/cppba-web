@@ -2,8 +2,8 @@ package com.cppba.service.impl;
 
 import com.cppba.core.bean.PageEntity;
 import com.cppba.dao.PermissionDao;
-import com.cppba.dto.PermissionDto;
 import com.cppba.dto.BaseDto;
+import com.cppba.dto.PermissionDto;
 import com.cppba.entity.Permission;
 import com.cppba.service.PermissionService;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,6 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * 开发者
@@ -57,6 +56,13 @@ public class PermissionServiceImpl implements PermissionService{
 		Permission permission = permissionDto.getPermission();
 		int page = permissionDto.getPage();
 		int pageSize = permissionDto.getPageSize();
+
+		//roleId
+		long roleId = permission.getRoleId();
+		if(roleId > 0){
+			hql += " and permission.roleId = :roleId ";
+			params.put("roleId",roleId);
+		}
 
 		List list = permissionDao.query(hql,params,page,pageSize);
 		long count = permissionDao.count(hql,params);

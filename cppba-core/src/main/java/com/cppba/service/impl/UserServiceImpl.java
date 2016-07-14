@@ -1,11 +1,11 @@
 package com.cppba.service.impl;
 
+import com.cppba.core.bean.PageEntity;
 import com.cppba.dao.UserDao;
 import com.cppba.dto.BaseDto;
 import com.cppba.dto.UserDto;
 import com.cppba.entity.User;
 import com.cppba.service.UserService;
-import com.cppba.core.bean.PageEntity;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,6 +46,19 @@ public class UserServiceImpl implements UserService {
 	public User findById(long id) {
 		return (User) userDao.get(User.class, id);
 	}
+
+    @Override
+    public User findByUserName(String userName) {
+        Map<String,Object> params = new HashMap<String, Object>();
+        String hql = " select distinct user from User user where 1=1 ";
+        hql += " and user.userName = :userName ";
+        params.put("userName",userName);
+        List list = userDao.query(hql,params,0,0);
+        if(list.size() > 0){
+            return (User) list.get(0);
+        }
+        return null;
+    }
 
     public PageEntity<User> query(BaseDto baseDto) {
         Map<String,Object> params = new HashMap<String, Object>();

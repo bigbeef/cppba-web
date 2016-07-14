@@ -2,8 +2,8 @@ package com.cppba.service.impl;
 
 import com.cppba.core.bean.PageEntity;
 import com.cppba.dao.UserRoleDao;
-import com.cppba.dto.UserRoleDto;
 import com.cppba.dto.BaseDto;
+import com.cppba.dto.UserRoleDto;
 import com.cppba.entity.UserRole;
 import com.cppba.service.UserRoleService;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,6 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * 开发者
@@ -57,6 +56,13 @@ public class UserRoleServiceImpl implements UserRoleService{
 		UserRole userRole = userRoleDto.getUserRole();
 		int page = userRoleDto.getPage();
 		int pageSize = userRoleDto.getPageSize();
+
+		//userId
+		long userId = userRole.getUserId();
+		if(userId > 0){
+			hql += " and userRole.userId = :userId ";
+			params.put("userId",userId);
+		}
 
 		List list = userRoleDao.query(hql,params,page,pageSize);
 		long count = userRoleDao.count(hql,params);

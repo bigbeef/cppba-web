@@ -2,8 +2,8 @@ package com.cppba.service.impl;
 
 import com.cppba.core.bean.PageEntity;
 import com.cppba.dao.RoleDao;
-import com.cppba.dto.RoleDto;
 import com.cppba.dto.BaseDto;
+import com.cppba.dto.RoleDto;
 import com.cppba.entity.Role;
 import com.cppba.service.RoleService;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,6 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * 开发者
@@ -44,7 +43,7 @@ public class RoleServiceImpl implements RoleService{
 	}
 
 	@Override
-	public Role findById(int id) {
+	public Role findById(long id) {
 		return (Role) roleDao.get(Role.class, id);
 	}
 

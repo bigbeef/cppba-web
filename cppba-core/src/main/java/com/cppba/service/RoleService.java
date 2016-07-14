@@ -18,7 +18,7 @@ public interface RoleService {
 
 	void update(Role role);
 
-	Role findById(int id);
+	Role findById(long id);
 
 	PageEntity<Role> query(BaseDto baseDto);
 }

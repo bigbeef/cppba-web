@@ -1,8 +1,7 @@
 package com.cppba.service;
 
-import com.cppba.dto.BaseDto;
-import com.cppba.dto.UserDto;
 import com.cppba.core.bean.PageEntity;
+import com.cppba.dto.BaseDto;
 import com.cppba.entity.User;
 
 /**
@@ -19,6 +18,8 @@ public interface UserService {
 	void update(User user);
 	
 	User findById(long id);
+
+	User findByUserName(String userName);
 
 	PageEntity<User> query(BaseDto baseDto);
 }
