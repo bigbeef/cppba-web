@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by Administrator on 2016/6/23.
  */
 @Entity
-@Table(name = "articles", schema = "cppba", catalog = "")
+@Table(name = "articles")
 public class Articles implements Serializable {
     private long articleId;
     private Timestamp addTime = new Timestamp(new Date().getTime());
