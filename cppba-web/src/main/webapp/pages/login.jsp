@@ -40,7 +40,7 @@
     </ul>
 </div>
 <div class="loginbody">
-    <span class="systemlogo"></span>
+    <span class="systemlogo" style="display:block;"></span>
     <div class="loginbox">
         <form action="login_system.htm" method="post" id="form">
             <ul>
