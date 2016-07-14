@@ -1,5 +1,6 @@
 package com.cppba.core.util;
 
+import com.cppba.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +23,12 @@ public class CommonUtil {
 
     private static Logger logger = LoggerFactory.getLogger(CommonUtil.class);
 
+    public static User getUserFromSession(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        return user;
+    }
+    
     //构建返回json规范
     public static Map<String,Object> parseJson(String code,String msg,Object data){
         Map<String,Object> map = new HashMap<String, Object>();

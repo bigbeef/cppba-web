@@ -1,4 +1,4 @@
-package com.cppba.web;
+package com.cppba.web.blogger;
 
 import com.cppba.core.bean.PageEntity;
 import com.cppba.core.util.CommonUtil;
@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,15 +36,15 @@ public class UserAction {
     @Resource
     private UserService userService;
 
-    @RequestMapping("login.htm")
+    @RequestMapping("/login.htm")
     public ModelAndView login(
             HttpServletRequest request, HttpServletResponse response){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("pages/login.jsp");
+        mv.setViewName("/pages/login.jsp");
         return mv;
     }
 
-    @RequestMapping("login_system.htm")
+    @RequestMapping("/login_system.htm")
     public ModelAndView login_system(
             HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value="userName", defaultValue="")String userName,
@@ -58,10 +59,15 @@ public class UserAction {
         PageEntity<User> pe = userService.query(userDto);
         List<User> userList = pe.getList();
         if(userList.size()>0){//登录成功
-            mv = new ModelAndView("pages/main.jsp");
+            mv = new ModelAndView("/pages/main.jsp");
             User u = userList.get(0);
+            
             HttpSession session = request.getSession();
             session.setAttribute("user",u);
+
+            Cookie cookie = new Cookie("userId",u.getUserId()+"");
+            cookie.setMaxAge(1000*60*60*24*365*100);
+            response.addCookie(cookie);
         }else{//用户名密码错误
             mv = new ModelAndView("redirect:/login.htm");
             redirectAttributes.addFlashAttribute("error","用户名密码错误！");
@@ -69,14 +75,15 @@ public class UserAction {
         return mv;
     }
 
-    @RequestMapping("user_setting.htm")
+    @RequestMapping("/blogger/user_setting.htm")
     public void user_setting(
             HttpServletRequest request, HttpServletResponse response,
-            @RequestParam(value="userId", defaultValue="0")int userId,
             @RequestParam(value="nickName", defaultValue="")String nickName,
             @RequestParam(value="remark", defaultValue="")String remark){
         Map<String,Object> map = new HashMap<String,Object>();
         try {
+            User sessionUser = CommonUtil.getUserFromSession(request);
+            long userId = sessionUser.getUserId();
             User user = userService.findById(userId);
             if(user == null){
                 map = CommonUtil.parseJson("3","用户不存在","");
@@ -94,11 +101,13 @@ public class UserAction {
         CommonUtil.responseBuildJson(response,map);
     }
 
-    @RequestMapping("user_load.htm")
-    public void user_load(HttpServletRequest request, HttpServletResponse response,
-                             @RequestParam(value="userId", defaultValue="0")int userId){
+    @RequestMapping("/blogger/user_load.htm")
+    public void user_load(
+            HttpServletRequest request, HttpServletResponse response){
         Map<String,Object> map = new HashMap<String,Object>();
         try {
+            User sessionUser = CommonUtil.getUserFromSession(request);
+            long userId = sessionUser.getUserId();
             User user = userService.findById(userId);
             if(user == null){
                 map = CommonUtil.parseJson("3","用户不存在","");

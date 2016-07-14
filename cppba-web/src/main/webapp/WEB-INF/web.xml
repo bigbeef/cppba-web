@@ -16,6 +16,16 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!--bloggerLoginFilter-->
+    <filter>
+        <filter-name>bloggerLoginFilter</filter-name>
+        <filter-class>com.cppba.filter.BloggerLoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>bloggerLoginFilter</filter-name>
+        <url-pattern>*.htm</url-pattern>
+    </filter-mapping>
+    
     <!--SpringMVC-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

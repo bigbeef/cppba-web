@@ -63,7 +63,7 @@
             <textarea id="abstracts" name="" cols="" rows="" class="textinput"></textarea><i>用于首页展示</i>
         </li>
         <li><label>文章内容</label><%--<textarea name="" cols="" rows="" class="textinput"></textarea>--%>
-            <div style="height: 800px;">
+            <div style="height: 750px;">
                 <div style="margin-left: -86px;">
                     <div id="markdown"></div>
                 </div>

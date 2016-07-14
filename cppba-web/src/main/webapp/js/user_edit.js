@@ -15,11 +15,10 @@ $(function(){
 })
 
 function user_load(){
-    var userId = $("[name=userId]").val();
     $.ajax({
         type: 'POST',
-        url: getPath() + '/user_load.htm',
-        data: {userId: userId},
+        url: getPath() + '/blogger/user_load.htm',
+        data: {},
         dataType: 'json',
         async: false,
         success: function (data) {
@@ -36,15 +35,14 @@ function user_load(){
 
 //提交
 function submit(){
-    var userId = $("[name=userId]").val();
     var nickName = $("[name=nickName]").val();
     var remark = KE.util.getData("content7");
     var sure = confirm("确认修改吗?");
     if(sure){
         $.ajax({
             type: 'POST',
-            url: getPath() + '/user_setting.htm',
-            data: {userId: userId, nickName: nickName,remark:remark},
+            url: getPath() + '/blogger/user_setting.htm',
+            data: { nickName: nickName,remark:remark},
             dataType: 'json',
             async: false,
             success: function (data) {

@@ -17,12 +17,11 @@ $(function(){
 
 //加载文章分类列表
 function list_articleClass(){
-    var userId = $("#userId").val();
     var likeName = $("#likeName").val();
     $.ajax({
         type: 'POST',
-        url: getPath() + '/article_query.htm',
-        data: {userId: userId,likeName:likeName},
+        url: getPath() + '/blogger/article_query.htm',
+        data: {likeName:likeName},
         dataType: 'json',
         async: false,
         success: function (data) {
@@ -37,7 +36,7 @@ function list_articleClass(){
                     html += '<tr>'
                         +'<td>'+articleClass.name+'</td>'
                         +'<td>'+article.title+'</td>'
-                        +'<td>'+article.abstracts+'</td>'
+                       /* +'<td>'+article.abstracts+'</td>'*/
                         +'<td>'+time+'</td>'
                         +'<td><a href="#" onclick="load_articleClass('+article.articleId+')"'
                         +'class="tablelink">编辑</a>'

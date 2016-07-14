@@ -1,10 +1,11 @@
-package com.cppba.web;
+package com.cppba.web.blogger;
 
 import com.cppba.core.bean.PageEntity;
 import com.cppba.core.util.CommonUtil;
 import com.cppba.dto.ArticlesDto;
 import com.cppba.entity.ArticleClass;
 import com.cppba.entity.Articles;
+import com.cppba.entity.User;
 import com.cppba.service.ArticleClassService;
 import com.cppba.service.ArticlesService;
 import org.slf4j.Logger;
@@ -40,15 +41,16 @@ public class ArticlesAction {
     /**
      * 文章查询
      */
-    @RequestMapping("article_query.htm")
+    @RequestMapping("/blogger/article_query.htm")
     public void article_query(
             HttpServletRequest request, HttpServletResponse response,
-            @RequestParam(value="userId", defaultValue="0")long userId,
             @RequestParam(value="likeName", defaultValue="")String likeName,
             @RequestParam(value="page", defaultValue="0")int page,
             @RequestParam(value="pageSize", defaultValue="0")int pageSize){
         Map<String,Object> map = new HashMap<>();
         try {
+            User sessionUser = CommonUtil.getUserFromSession(request);
+            long userId = sessionUser.getUserId();
             Map<String,Object> map1 = new HashMap<>();
 
             ArticlesDto articlesDto = new ArticlesDto();
@@ -82,17 +84,18 @@ public class ArticlesAction {
     /**
      * 文章保存或修改
      */
-    @RequestMapping("article_saveOrUpdate.htm")
+    @RequestMapping("/blogger/article_saveOrUpdate.htm")
     public void article_saveOrUpdate(
             HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value="articleId", defaultValue="0")long articleId,
-            @RequestParam(value="userId", defaultValue="0")long userId,
             @RequestParam(value="articleClassId", defaultValue="0")long articleClassId,
             @RequestParam(value="title", defaultValue="")String title,
             @RequestParam(value="abstracts", defaultValue="")String abstracts,
             @RequestParam(value="content", defaultValue="") String content){
         Map<String,Object> map = new HashMap<>();
         try {
+            User sessionUser = CommonUtil.getUserFromSession(request);
+            long userId = sessionUser.getUserId();
             Map<String,Object> map1 = new HashMap<>();
             Articles article = articlesService.findById(articleId);
             boolean isNew = false;
@@ -110,6 +113,32 @@ public class ArticlesAction {
             }else{
                 articlesService.update(article);
             }
+            map = CommonUtil.parseJson("1","操作成功",map1);
+        }catch (Exception e){
+            map = CommonUtil.parseJson("2","操作异常","");
+            logger.error(e.getMessage(),e);
+        }
+        CommonUtil.responseBuildJson(response,map);
+    }
+
+    /**
+     * 文章加载
+     */
+    @RequestMapping("/blogger/article_load.htm")
+    public void article_load(
+            HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(value="articleId", defaultValue="0")long articleId){
+        Map<String,Object> map = new HashMap<>();
+        try {
+            Map<String,Object> map1 = new HashMap<>();
+
+            Articles article = articlesService.findById(articleId);
+            if(article == null){
+                map = CommonUtil.parseJson("3","文章不存在","");
+                CommonUtil.responseBuildJson(response,map);
+                return;
+            }
+            map1.put("article",article);
             map = CommonUtil.parseJson("1","操作成功",map1);
         }catch (Exception e){
             map = CommonUtil.parseJson("2","操作异常","");

@@ -1,9 +1,10 @@
-package com.cppba.web;
+package com.cppba.web.blogger;
 
 import com.cppba.core.bean.PageEntity;
 import com.cppba.core.util.CommonUtil;
 import com.cppba.dto.ArticleClassDto;
 import com.cppba.entity.ArticleClass;
+import com.cppba.entity.User;
 import com.cppba.service.ArticleClassService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,15 +37,16 @@ public class ArticleClassAction {
     /**
      * 文章类别查询
      */
-    @RequestMapping("articleClass_query.htm")
+    @RequestMapping("/blogger/articleClass_query.htm")
     public void articleClass_query(
             HttpServletRequest request, HttpServletResponse response,
-            @RequestParam(value="userId", defaultValue="0")long userId,
             @RequestParam(value="likeName", defaultValue="")String likeName,
             @RequestParam(value="page", defaultValue="0")int page,
             @RequestParam(value="pageSize", defaultValue="0")int pageSize){
         Map<String,Object> map = new HashMap<String,Object>();
         try {
+            User sessionUser = CommonUtil.getUserFromSession(request);
+            long userId = sessionUser.getUserId();
             Map<String,Object> map1 = new HashMap<String,Object>();
             ArticleClassDto articleClassDto = new ArticleClassDto();
             ArticleClass articleClass = new ArticleClass();
@@ -74,17 +76,17 @@ public class ArticleClassAction {
     /**
      * 文章类别保存或修改
      */
-    @RequestMapping("articleClass_saveOrUpdate.htm")
+    @RequestMapping("/blogger/articleClass_saveOrUpdate.htm")
     public void articleClass_saveOrUpdate(
             HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value="articleClassId", defaultValue="0")long articleClassId,
-            @RequestParam(value="userId", defaultValue="0")long userId,
             @RequestParam(value="name", defaultValue="")String name,
             @RequestParam(value="sortId", defaultValue="0")int sortId){
         Map<String,Object> map = new HashMap<String,Object>();
         try {
+            User sessionUser = CommonUtil.getUserFromSession(request);
+            long userId = sessionUser.getUserId();
             Map<String,Object> map1 = new HashMap<String,Object>();
-
             ArticleClass articleClass = articleClassService.findById(articleClassId);
             boolean isNew = false;
             if(articleClass == null){
@@ -110,7 +112,7 @@ public class ArticleClassAction {
     /**
      * 文章类别加载
      */
-    @RequestMapping("articleClass_load.htm")
+    @RequestMapping("/blogger/articleClass_load.htm")
     public void articleClass_load(
             HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value="articleClassId", defaultValue="0")long articleClassId){
@@ -136,7 +138,7 @@ public class ArticleClassAction {
     /**
      * 文章类别删除
      */
-    @RequestMapping("articleClass_delete.htm")
+    @RequestMapping("/blogger/articleClass_delete.htm")
     public void articleClass_delete(
             HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value="articleClassId", defaultValue="0")long articleClassId){

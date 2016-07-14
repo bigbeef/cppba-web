@@ -79,4 +79,6 @@ public class ApplicationConfiguration {
         commonsMultipartResolver.setMaxInMemorySize(4096);
         return commonsMultipartResolver;
     }
+    
+    
 }

@@ -33,14 +33,13 @@ $(function(){
 function add_submit(){
     var articleClassId = $("#articleClassId").val();;
     var name = $("#name").val();
-    var userId = $("#userId").val();
     var sortId = $("#sortId").val();
     var sure = confirm("确认操作吗?");
     if(sure){
         $.ajax({
             type: 'POST',
-            url: getPath() + '/articleClass_saveOrUpdate.htm',
-            data: {userId: userId,name:name,sortId:sortId,articleClassId:articleClassId},
+            url: getPath() + '/blogger/articleClass_saveOrUpdate.htm',
+            data: {name:name,sortId:sortId,articleClassId:articleClassId},
             dataType: 'json',
             async: false,
             success: function (data) {
@@ -57,12 +56,11 @@ function add_submit(){
 
 //加载文章分类列表
 function list_articleClass(){
-    var userId = $("#userId").val();
     var likeName = $("#likeName").val();
     $.ajax({
         type: 'POST',
-        url: getPath() + '/articleClass_query.htm',
-        data: {userId: userId,likeName:likeName},
+        url: getPath() + '/blogger/articleClass_query.htm',
+        data: {likeName:likeName},
         dataType: 'json',
         async: false,
         success: function (data) {
@@ -96,7 +94,7 @@ function list_articleClass(){
 function load_articleClass(articleClassId){
     $.ajax({
         type: 'POST',
-        url: getPath() + '/articleClass_load.htm',
+        url: getPath() + '/blogger/articleClass_load.htm',
         data: {articleClassId:articleClassId},
         dataType: 'json',
         async: false,
@@ -120,7 +118,7 @@ function delete_articleClass(articleClassId){
     if(sure) {
         $.ajax({
             type: 'POST',
-            url: getPath() + '/articleClass_delete.htm',
+            url: getPath() + '/blogger/articleClass_delete.htm',
             data: {articleClassId:articleClassId},
             dataType: 'json',
             async: false,

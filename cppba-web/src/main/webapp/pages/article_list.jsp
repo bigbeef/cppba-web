@@ -44,10 +44,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <table class="tablelist">
                 <thead>
                 <tr>
-                    <th width="10%" style="overflow: hidden">类别</th>
+                    <th width="20%" style="overflow: hidden">类别</th>
                     <th width="20" style="overflow: hidden">标题</th>
-                    <th width="50%" style="overflow: hidden">简介</th>
-                    <th width="10%" style="overflow: hidden">发布时间</th>
+                    <%--<th width="50%" style="overflow: hidden">简介</th>--%>
+                    <th width="20%" style="overflow: hidden">发布时间</th>
                     <th width="10%" style="overflow: hidden">操作</th>
                 </tr>
                 </thead>
