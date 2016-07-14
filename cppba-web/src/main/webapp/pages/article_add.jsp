@@ -4,6 +4,7 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+<%@include file="global.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head href="<%=basePath%>" data='${pageContext.request.contextPath}'>
@@ -12,18 +13,18 @@
     <meta http-equiv="expires" content="0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.css"  />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editormd.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css?v=<%=version%>">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.css?v=<%=version%>"  />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editormd.css?v=<%=version%>" />
     <style type="text/css">
         #markdown select{opacity:1;filter:alpha(opacity=1);}
         #markdown li{margin-bottom: 0px;}
     </style>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/Globals.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/select-ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/editormd.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/article_add.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/Globals.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/select-ui.min.js?v=<%=version%>"></script>
+    <script src="${pageContext.request.contextPath}/js/editormd.min.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/article_add.js?v=<%=version%>"></script>
 
 </head>
 

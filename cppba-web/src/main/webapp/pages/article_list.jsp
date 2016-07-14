@@ -4,6 +4,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@include file="global.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head href="<%=basePath%>" data='${pageContext.request.contextPath}'>
@@ -11,12 +12,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.css"  />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/Globals.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/article_list.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhf.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css?v=<%=version%>">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.css?v=<%=version%>"  />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/Globals.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/article_list.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhf.js?v=<%=version%>"></script>
 </head>
 
 <body>
