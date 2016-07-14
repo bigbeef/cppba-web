@@ -47,7 +47,7 @@ function add_submit(){
                     alert("操作成功！");
                     location.reload();
                 } else {
-                    alert(data.msg);
+                    ajaxCommonResultHandle(data);
                 }
             }
         })
@@ -84,7 +84,7 @@ function list_articleClass(){
                 }
                 $("#article_class").html(html);
             } else {
-                alert(data.msg);
+                ajaxCommonResultHandle(data);
             }
         }
     })
@@ -106,7 +106,7 @@ function load_articleClass(articleClassId){
                 $("#name").val(articleClass.name);
                 $("#sortId").val(articleClass.sortId);
             } else {
-                alert(data.msg);
+                ajaxCommonResultHandle(data);
             }
         }
     })
@@ -127,7 +127,7 @@ function delete_articleClass(articleClassId){
                     alert("删除成功！");
                     location.reload();
                 }else {
-                    alert(data.msg);
+                    ajaxCommonResultHandle(data);
                 }
             }
         })

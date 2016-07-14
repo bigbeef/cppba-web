@@ -27,7 +27,7 @@ function user_load(){
                 $("[name=nickName]").val(user.nickName);
                 $("[name=remark]").val(user.remark);
             } else {
-                alert(data.msg);
+                ajaxCommonResultHandle(data);
             }
         }
     })
@@ -49,7 +49,7 @@ function submit(){
                 if (data.result == 1) {
                     alert("修改成功!");
                 } else {
-                    alert(data.msg);
+                    ajaxCommonResultHandle(data);
                 }
             }
         })

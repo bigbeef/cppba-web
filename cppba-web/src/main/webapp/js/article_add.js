@@ -49,7 +49,7 @@ function load_article(){
                 $("#abstracts").val(article.abstracts);
                 markdown = article.content;
             } else {
-                alert(data.msg);
+                ajaxCommonResultHandle(data);
             }
         }
     })
@@ -75,7 +75,7 @@ function submit(){
                     alert("操作成功！");
                     location.href="article_list.jsp";
                 } else {
-                    alert(data.msg);
+                    ajaxCommonResultHandle(data);
                 }
             }
         })
@@ -102,7 +102,7 @@ function list_articleClass() {
                 }
                 $("#article_class").html(html);
             } else {
-                alert(data.msg);
+                ajaxCommonResultHandle(data);
             }
         }
     })

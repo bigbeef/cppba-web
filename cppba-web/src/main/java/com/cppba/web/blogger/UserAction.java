@@ -59,7 +59,7 @@ public class UserAction {
         PageEntity<User> pe = userService.query(userDto);
         List<User> userList = pe.getList();
         if(userList.size()>0){//登录成功
-            mv = new ModelAndView("/pages/main.jsp");
+            mv = new ModelAndView("redirect:/pages/main.jsp");
             User u = userList.get(0);
             
             HttpSession session = request.getSession();

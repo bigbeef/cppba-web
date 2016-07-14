@@ -46,7 +46,7 @@ function list_articleClass(){
                 }
                 $("#article").html(html);
             } else {
-                alert(data.msg);
+                ajaxCommonResultHandle(data);
             }
         }
     })
