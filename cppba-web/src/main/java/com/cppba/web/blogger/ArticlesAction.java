@@ -8,6 +8,7 @@ import com.cppba.entity.Articles;
 import com.cppba.entity.User;
 import com.cppba.service.ArticleClassService;
 import com.cppba.service.ArticlesService;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -41,6 +42,7 @@ public class ArticlesAction {
     /**
      * 文章查询
      */
+    @RequiresRoles("blogger")
     @RequestMapping("/blogger/article_query.htm")
     public void article_query(
             HttpServletRequest request, HttpServletResponse response,
@@ -73,17 +75,17 @@ public class ArticlesAction {
             }
             map1.put("articles",list);
             map1.put("count",pe.getCount());
-            map = CommonUtil.parseJson("1","操作成功",map1);
+            CommonUtil.responseBuildJson("1","操作成功",map1,response);
         }catch (Exception e){
-            map = CommonUtil.parseJson("2","操作异常","");
+            CommonUtil.responseBuildJson("2","操作异常",null,response);
             logger.error(e.getMessage(),e);
         }
-        CommonUtil.responseBuildJson(response,map);
     }
 
     /**
      * 文章保存或修改
      */
+    @RequiresRoles("blogger")
     @RequestMapping("/blogger/article_saveOrUpdate.htm")
     public void article_saveOrUpdate(
             HttpServletRequest request, HttpServletResponse response,
@@ -113,17 +115,17 @@ public class ArticlesAction {
             }else{
                 articlesService.update(article);
             }
-            map = CommonUtil.parseJson("1","操作成功",map1);
+            CommonUtil.responseBuildJson("1","操作成功",map1,response);
         }catch (Exception e){
-            map = CommonUtil.parseJson("2","操作异常","");
+            CommonUtil.responseBuildJson("2","操作异常",null,response);
             logger.error(e.getMessage(),e);
         }
-        CommonUtil.responseBuildJson(response,map);
     }
 
     /**
      * 文章加载
      */
+    @RequiresRoles("blogger")
     @RequestMapping("/blogger/article_load.htm")
     public void article_load(
             HttpServletRequest request, HttpServletResponse response,
@@ -134,16 +136,14 @@ public class ArticlesAction {
 
             Articles article = articlesService.findById(articleId);
             if(article == null){
-                map = CommonUtil.parseJson("3","文章不存在","");
-                CommonUtil.responseBuildJson(response,map);
+                CommonUtil.responseBuildJson("3","文章不存在",map1,response);
                 return;
             }
             map1.put("article",article);
-            map = CommonUtil.parseJson("1","操作成功",map1);
+            CommonUtil.responseBuildJson("1","操作成功",map1,response);
         }catch (Exception e){
-            map = CommonUtil.parseJson("2","操作异常","");
+            CommonUtil.responseBuildJson("2","操作异常",null,response);
             logger.error(e.getMessage(),e);
         }
-        CommonUtil.responseBuildJson(response,map);
     }
 }

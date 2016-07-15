@@ -2,6 +2,15 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5">
+    <!--SpringOpenSessionInViewFilter-->
+    <filter>
+        <filter-name>SpringOpenSessionInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SpringOpenSessionInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <!--编码UTF-8-->
     <filter>
         <filter-name>springUtf8Encoding</filter-name>
@@ -14,16 +23,6 @@
     <filter-mapping>
         <filter-name>springUtf8Encoding</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <!--bloggerLoginFilter-->
-    <filter>
-        <filter-name>bloggerLoginFilter</filter-name>
-        <filter-class>com.cppba.filter.BloggerLoginFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>bloggerLoginFilter</filter-name>
-        <url-pattern>*.htm</url-pattern>
     </filter-mapping>
     
     <!--SpringMVC-->
@@ -91,7 +90,17 @@
         <servlet-name>DruidStatView</servlet-name>
         <url-pattern>/druid/*</url-pattern>
     </servlet-mapping>
-
+    <!--shiro-->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>
+            org.springframework.web.filter.DelegatingFilterProxy
+        </filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>
 <!--
 开发者

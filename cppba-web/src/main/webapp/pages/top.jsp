@@ -13,7 +13,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=<%=version%>">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/Globals.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/globals.js?v=<%=version%>"></script>
     <script type="text/javascript">
     $(function(){
         //顶部导航切换

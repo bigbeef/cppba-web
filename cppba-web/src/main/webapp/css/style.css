@@ -219,6 +219,11 @@ h2{font-weight:normal;}
 .error{background:url(../images/404.png) no-repeat; width:490px; margin-top:75px;padding-top:65px;}
 .error h2{font-size:22px; padding-left:154px;}
 .error p{padding-left:154px; line-height:35px;color:#717678;}
+/*error 403*/
+.error403{background:url(../images/403.png) no-repeat; width:490px; margin-top:75px;padding-top:65px;}
+.error403 h2{font-size:22px; padding-left:154px;}
+.error403 p{padding-left:154px; line-height:35px;color:#717678;}
+
 .reindex{padding-left:154px;}
 .reindex a{width:115px; height:35px; font-size:14px; font-weight:bold; color:#fff; background:#3c95c8; display:block; line-height:35px; text-align:center;border-radius: 3px; behavior:url(../js/pie.htc);margin-top:20px;}
 

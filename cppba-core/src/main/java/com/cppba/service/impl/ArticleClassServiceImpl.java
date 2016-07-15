@@ -4,11 +4,8 @@ import com.cppba.core.bean.PageEntity;
 import com.cppba.dao.ArticleClassDao;
 import com.cppba.dto.ArticleClassDto;
 import com.cppba.dto.BaseDto;
-import com.cppba.dto.UserDto;
 import com.cppba.entity.ArticleClass;
-import com.cppba.entity.User;
 import com.cppba.service.ArticleClassService;
-import com.cppba.service.UserService;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -71,9 +68,9 @@ public class ArticleClassServiceImpl implements ArticleClassService {
             hql += " and articleClass.userId = :userId ";
             params.put("userId",articleClass.getUserId());
         }
+        
         //未被删除的
         hql += " and deleteStatus = 0";
-
         List list = articleClassDao.query(hql,params,page,pageSize);
         long count = articleClassDao.count(hql,params);
         PageEntity<ArticleClass> pe = new PageEntity<ArticleClass>();

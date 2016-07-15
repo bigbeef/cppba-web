@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
     	http://www.springframework.org/schema/beans/spring-beans.xsd
    	 	http://www.springframework.org/schema/context 
    	 	http://www.springframework.org/schema/context/spring-context.xsd 
     	http://www.springframework.org/schema/mvc 
     	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<!-- 默认扫描的包路径 -->
-	<context:component-scan base-package="com.cppba" />
-	
-	<!-- 添加注解驱动 -->
-	<mvc:annotation-driven/>
+    <!-- 默认扫描的包路径 -->
+    <context:component-scan base-package="com.cppba"/>
 
+    <!-- 添加注解驱动 -->
+    <mvc:annotation-driven/>
+
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">
+                    /403.htm
+                </prop>
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">
+                    /login.htm
+                </prop>
+            </props>
+        </property>
+    </bean>
 </beans>
-		<!--
+        <!--
         开发者
         nickName:大黄蜂
         email:245655812@qq.com

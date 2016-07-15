@@ -1,6 +1,9 @@
 package com.cppba.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.cppba.realm.MyRealm;
+import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
@@ -80,5 +83,30 @@ public class ApplicationConfiguration {
         return commonsMultipartResolver;
     }
     
+    //myRealm
+    @Bean
+    public MyRealm myRealm(){
+        return new MyRealm();
+    }
+    
+    //securityManager
+    @Bean
+    public DefaultWebSecurityManager securityManager(){
+        DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
+        defaultWebSecurityManager.setRealm(myRealm());
+        return defaultWebSecurityManager;
+    }
+    
+    //
+    @Bean
+    public ShiroFilterFactoryBean shiroFilter(){
+        ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
+        shiroFilterFactoryBean.setSecurityManager(securityManager());
+        shiroFilterFactoryBean.setLoginUrl("/login.htm");
+        shiroFilterFactoryBean.setSuccessUrl("/pages/main.jsp");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/pages/403.jsp");
+        //shiroFilterFactoryBean.setFilterChainDefinitions();
+        return shiroFilterFactoryBean;
+    }
     
 }

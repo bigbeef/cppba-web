@@ -13,8 +13,6 @@ import com.cppba.service.RoleService;
 import com.cppba.service.UserRoleService;
 import com.cppba.service.UserService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationException;
@@ -52,8 +50,8 @@ public class MyRealm extends AuthorizingRealm {
 
         //获取当前登录的用户名,等价于(String)principals.fromRealm(this.getName()).iterator().next()
         String currentUsername = (String) super.getAvailablePrincipal(principals);
-        List<String> roleList = new ArrayList<String>();
-        List<String> permissionList = new ArrayList<String>();
+        List<String> roleList = new ArrayList<>();
+        List<String> permissionList = new ArrayList<>();
         //从数据库中获取当前登录用户的详细信息
         User user = userService.findByUserName(currentUsername);
         if (null != user) {
@@ -87,14 +85,15 @@ public class MyRealm extends AuthorizingRealm {
         } else {
             throw new AuthorizationException();
         }
-
+        //System.out.println("roles:"+roleList);
+        //System.out.println("permissions:"+permissionList);
         //为当前用户设置角色和权限
         SimpleAuthorizationInfo simpleAuthorInfo = new SimpleAuthorizationInfo();
         simpleAuthorInfo.addRoles(roleList);
         simpleAuthorInfo.addStringPermissions(permissionList);
         //若该方法什么都不做直接返回null的话,就会导致任何用户访问/admin/listUser.jsp时都会自动跳转到unauthorizedUrl指定的地址
         //详见applicationContext.xml中的<bean id="shiroFilter">的配置
-        return null;
+        return simpleAuthorInfo;
     }
 
 
@@ -109,7 +108,7 @@ public class MyRealm extends AuthorizingRealm {
         //实际上这个authcToken是从LoginController里面currentUser.login(token)传过来的
         //两个token的引用都是一样的
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-        System.out.println("验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
+        //System.out.println("验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));
 
         User user = userService.findByUserName(token.getUsername());
         if (null != user) {

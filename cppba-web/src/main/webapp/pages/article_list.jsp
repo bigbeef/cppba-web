@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css?v=<%=version%>">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.css?v=<%=version%>"  />
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/Globals.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/globals.js?v=<%=version%>"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/article_list.js?v=<%=version%>"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhf.js?v=<%=version%>"></script>
 </head>

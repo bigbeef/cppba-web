@@ -5,6 +5,10 @@ import com.cppba.core.util.CommonUtil;
 import com.cppba.dto.UserDto;
 import com.cppba.entity.User;
 import com.cppba.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,10 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +41,11 @@ public class UserAction {
     @RequestMapping("/login.htm")
     public ModelAndView login(
             HttpServletRequest request, HttpServletResponse response){
+        boolean isAjaxRequest = CommonUtil.isAjaxRequerst(request);
+        if(isAjaxRequest){
+            CommonUtil.responseBuildJson("741","用户未登录",null,response);
+            return null;
+        } 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("/pages/login.jsp");
         return mv;
@@ -62,12 +69,19 @@ public class UserAction {
             mv = new ModelAndView("redirect:/pages/main.jsp");
             User u = userList.get(0);
             
-            HttpSession session = request.getSession();
+            /*HttpSession session = request.getSession();
             session.setAttribute("user",u);
 
             Cookie cookie = new Cookie("userId",u.getUserId()+"");
             cookie.setMaxAge(1000*60*60*24*365*100);
-            response.addCookie(cookie);
+            response.addCookie(cookie);*/
+
+            SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
+            // 登录后存放进shiro token  
+            UsernamePasswordToken token = new UsernamePasswordToken(u.getUserName(), u.getPassword());
+            Subject subject = SecurityUtils.getSubject();
+            subject.login(token);
+
         }else{//用户名密码错误
             mv = new ModelAndView("redirect:/login.htm");
             redirectAttributes.addFlashAttribute("error","用户名密码错误！");
@@ -75,6 +89,7 @@ public class UserAction {
         return mv;
     }
 
+    @RequiresRoles("blogger")
     @RequestMapping("/blogger/user_setting.htm")
     public void user_setting(
             HttpServletRequest request, HttpServletResponse response,
@@ -86,41 +101,38 @@ public class UserAction {
             long userId = sessionUser.getUserId();
             User user = userService.findById(userId);
             if(user == null){
-                map = CommonUtil.parseJson("3","用户不存在","");
-                CommonUtil.responseBuildJson(response,map);
+                CommonUtil.responseBuildJson("3","用户不存在",null,response);
                 return;
             }
             user.setNickName(nickName);
             user.setRemark(remark);
             userService.update(user);
-            map = CommonUtil.parseJson("1","操作成功","");
+            CommonUtil.responseBuildJson("1","操作成功",null,response);
         }catch (Exception e){
-            map = CommonUtil.parseJson("2","操作异常","");
+            CommonUtil.responseBuildJson("2","操作异常",null,response);
             logger.error(e.getMessage(),e);
         }
-        CommonUtil.responseBuildJson(response,map);
     }
 
+    @RequiresRoles("blogger")
     @RequestMapping("/blogger/user_load.htm")
     public void user_load(
             HttpServletRequest request, HttpServletResponse response){
-        Map<String,Object> map = new HashMap<String,Object>();
+        Map<String,Object> map = new HashMap<>();
         try {
             User sessionUser = CommonUtil.getUserFromSession(request);
             long userId = sessionUser.getUserId();
             User user = userService.findById(userId);
             if(user == null){
-                map = CommonUtil.parseJson("3","用户不存在","");
-                CommonUtil.responseBuildJson(response,map);
+                CommonUtil.responseBuildJson("3","用户不存在",null,response);
                 return;
             }
             Map<String,Object> map1 = new HashMap<String,Object>();
             map1.put("user",user);
-            map = CommonUtil.parseJson("1","操作成功",map1);
+            CommonUtil.responseBuildJson("1","操作成功",map1,response);
         }catch (Exception e){
-            map = CommonUtil.parseJson("2","操作异常","");
+            CommonUtil.responseBuildJson("2","操作异常",null,response);
             logger.error(e.getMessage(),e);
         }
-        CommonUtil.responseBuildJson(response,map);
     }
 }

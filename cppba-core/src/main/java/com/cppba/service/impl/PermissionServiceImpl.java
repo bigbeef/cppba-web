@@ -57,6 +57,7 @@ public class PermissionServiceImpl implements PermissionService{
 		int page = permissionDto.getPage();
 		int pageSize = permissionDto.getPageSize();
 
+		
 		//roleId
 		long roleId = permission.getRoleId();
 		if(roleId > 0){
@@ -64,6 +65,8 @@ public class PermissionServiceImpl implements PermissionService{
 			params.put("roleId",roleId);
 		}
 
+        //未被删除的
+        hql += " and deleteStatus = 0";
 		List list = permissionDao.query(hql,params,page,pageSize);
 		long count = permissionDao.count(hql,params);
 		PageEntity<Permission> pe = new PageEntity<Permission>();

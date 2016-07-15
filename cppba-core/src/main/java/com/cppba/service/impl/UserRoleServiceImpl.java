@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 开发者
@@ -64,6 +65,8 @@ public class UserRoleServiceImpl implements UserRoleService{
 			params.put("userId",userId);
 		}
 
+		//未被删除的
+		hql += " and deleteStatus = 0";
 		List list = userRoleDao.query(hql,params,page,pageSize);
 		long count = userRoleDao.count(hql,params);
 		PageEntity<UserRole> pe = new PageEntity<UserRole>();

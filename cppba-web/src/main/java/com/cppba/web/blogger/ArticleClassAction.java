@@ -6,6 +6,7 @@ import com.cppba.dto.ArticleClassDto;
 import com.cppba.entity.ArticleClass;
 import com.cppba.entity.User;
 import com.cppba.service.ArticleClassService;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,7 @@ public class ArticleClassAction {
     /**
      * 文章类别查询
      */
+    @RequiresRoles("blogger")
     @RequestMapping("/blogger/articleClass_query.htm")
     public void articleClass_query(
             HttpServletRequest request, HttpServletResponse response,
@@ -65,17 +67,17 @@ public class ArticleClassAction {
             }
             map1.put("articleClasss",list);
             map1.put("count",pe.getCount());
-            map = CommonUtil.parseJson("1","操作成功",map1);
+            CommonUtil.responseBuildJson("1","操作成功",map1,response);
         }catch (Exception e){
-            map = CommonUtil.parseJson("2","操作异常","");
+            CommonUtil.responseBuildJson("2","操作异常",null,response);
             logger.error(e.getMessage(),e);
         }
-        CommonUtil.responseBuildJson(response,map);
     }
 
     /**
      * 文章类别保存或修改
      */
+    @RequiresRoles("blogger")
     @RequestMapping("/blogger/articleClass_saveOrUpdate.htm")
     public void articleClass_saveOrUpdate(
             HttpServletRequest request, HttpServletResponse response,
@@ -101,17 +103,17 @@ public class ArticleClassAction {
             }else{
                 articleClassService.update(articleClass);
             }
-            map = CommonUtil.parseJson("1","操作成功",map1);
+            CommonUtil.responseBuildJson("1","操作成功",map1,response);
         }catch (Exception e){
-            map = CommonUtil.parseJson("2","操作异常","");
+            CommonUtil.responseBuildJson("2","操作异常",null,response);
             logger.error(e.getMessage(),e);
         }
-        CommonUtil.responseBuildJson(response,map);
     }
 
     /**
      * 文章类别加载
      */
+    @RequiresRoles("blogger")
     @RequestMapping("/blogger/articleClass_load.htm")
     public void articleClass_load(
             HttpServletRequest request, HttpServletResponse response,
@@ -122,22 +124,21 @@ public class ArticleClassAction {
 
             ArticleClass articleClass = articleClassService.findById(articleClassId);
             if(articleClass==null){
-                map = CommonUtil.parseJson("3","类别不存在",map1);
-                CommonUtil.responseBuildJson(response,map);
+                CommonUtil.responseBuildJson("3","类别不存在",map1,response);
                 return;
             }
             map1.put("articleClass",articleClass);
-            map = CommonUtil.parseJson("1","操作成功",map1);
+            CommonUtil.responseBuildJson("1","操作成功",map1,response);
         }catch (Exception e){
-            map = CommonUtil.parseJson("2","操作异常","");
+            CommonUtil.responseBuildJson("2","操作异常",null,response);
             logger.error(e.getMessage(),e);
         }
-        CommonUtil.responseBuildJson(response,map);
     }
 
     /**
      * 文章类别删除
      */
+    @RequiresRoles("blogger")
     @RequestMapping("/blogger/articleClass_delete.htm")
     public void articleClass_delete(
             HttpServletRequest request, HttpServletResponse response,
@@ -148,17 +149,15 @@ public class ArticleClassAction {
 
             ArticleClass articleClass = articleClassService.findById(articleClassId);
             if(articleClass==null){
-                map = CommonUtil.parseJson("3","类别不存在",map1);
-                CommonUtil.responseBuildJson(response,map);
+                CommonUtil.responseBuildJson("3","类别不存在",map1,response);
                 return;
             }
             articleClass.setDeleteStatus(1);
             articleClassService.update(articleClass);
-            map = CommonUtil.parseJson("1","操作成功",map1);
+            CommonUtil.responseBuildJson("1","操作成功",map1,response);
         }catch (Exception e){
-            map = CommonUtil.parseJson("2","操作异常","");
+            CommonUtil.responseBuildJson("2","操作异常",null,response);
             logger.error(e.getMessage(),e);
         }
-        CommonUtil.responseBuildJson(response,map);
     }
 }

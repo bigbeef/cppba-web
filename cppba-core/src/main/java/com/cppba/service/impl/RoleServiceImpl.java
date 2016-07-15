@@ -57,6 +57,8 @@ public class RoleServiceImpl implements RoleService{
 		int page = roleDto.getPage();
 		int pageSize = roleDto.getPageSize();
 
+		//未被删除的
+		hql += " and deleteStatus = 0";
 		List list = roleDao.query(hql,params,page,pageSize);
 		long count = roleDao.count(hql,params);
 		PageEntity<Role> pe = new PageEntity<Role>();

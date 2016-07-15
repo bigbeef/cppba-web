@@ -21,7 +21,7 @@
         #markdown li{margin-bottom: 0px;}
     </style>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/Globals.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/globals.js?v=<%=version%>"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/select-ui.min.js?v=<%=version%>"></script>
     <script src="${pageContext.request.contextPath}/js/editormd.min.js?v=<%=version%>"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/article_add.js?v=<%=version%>"></script>
