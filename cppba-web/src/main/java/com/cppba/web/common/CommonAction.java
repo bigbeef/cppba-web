@@ -21,6 +21,7 @@ import java.util.Map;
 public class CommonAction {
     private static Logger logger = LoggerFactory.getLogger(CommonAction.class);
 
+    //返回403错误
     @RequestMapping("/403.htm")
     public void login(
             HttpServletRequest request, HttpServletResponse response){

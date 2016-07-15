@@ -32,7 +32,13 @@ function getCookie(name){
 //ajax返回通用结果解析结果
 function ajaxCommonResultHandle(json){
     if(json.result == 741){
+        alert(json.msg);
         window.parent.location.href= getPath()+"/login.htm";
+        return;
+    }
+    if(json.result == 403){
+        alert(json.msg);
+        window.location.href= getPath()+"/pages/403.jsp";
         return;
     }
     alert(data.data.result);

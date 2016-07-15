@@ -9,6 +9,12 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import java.io.IOException;
 
+/**
+ * 开发者
+ *  nickName:大黄蜂
+ *  email:245655812@qq.com
+ *  github:https://github.com/bigbeef
+ */
 public class ApplicationInitializer implements WebApplicationInitializer {
 
     public static PropertySourcesPropertyResolver propertySourcesPropertyResolver;

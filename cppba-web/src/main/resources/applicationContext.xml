@@ -15,30 +15,7 @@
 
     <!-- 添加注解驱动 -->
     <mvc:annotation-driven/>
-
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
-          depends-on="lifecycleBeanPostProcessor">
-        <property name="proxyTargetClass" value="true"/>
-    </bean>
-
-    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-        <property name="securityManager" ref="securityManager"/>
-    </bean>
-
-    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
-
-    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="exceptionMappings">
-            <props>
-                <prop key="org.apache.shiro.authz.UnauthorizedException">
-                    /403.htm
-                </prop>
-                <prop key="org.apache.shiro.authz.UnauthenticatedException">
-                    /login.htm
-                </prop>
-            </props>
-        </property>
-    </bean>
+    
 </beans>
         <!--
         开发者
