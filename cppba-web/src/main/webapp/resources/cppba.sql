@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50710
 File Encoding         : 65001
 
-Date: 2016-07-14 18:08:28
+Date: 2016-07-15 16:17:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,7 +54,6 @@ CREATE TABLE `article_class` (
 -- Records of article_class
 -- ----------------------------
 INSERT INTO `article_class` VALUES ('1', '2016-07-14 14:48:23', '0', '1', 'java', '0');
-INSERT INTO `article_class` VALUES ('5', '2016-07-14 16:13:09', '0', '1', '测试', '1');
 
 -- ----------------------------
 -- Table structure for permission
@@ -69,11 +68,12 @@ CREATE TABLE `permission` (
   `url` varchar(64) DEFAULT NULL COMMENT '资源名',
   `description` varchar(32) DEFAULT NULL COMMENT '权限说明',
   PRIMARY KEY (`permission_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of permission
 -- ----------------------------
+INSERT INTO `permission` VALUES ('1', '2016-07-15 09:55:37', '0', '1', null, 'blogger:create', null);
 
 -- ----------------------------
 -- Table structure for role
@@ -86,11 +86,12 @@ CREATE TABLE `role` (
   `name` varchar(16) DEFAULT NULL COMMENT '角色名称',
   `description` varchar(16) DEFAULT NULL COMMENT '角色说明',
   PRIMARY KEY (`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
+INSERT INTO `role` VALUES ('1', '2016-07-15 13:55:27', '0', 'blogger', '博主');
 
 -- ----------------------------
 -- Table structure for user
@@ -110,8 +111,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '2016-06-23 09:40:01', '0', 'admin', 'admin', '大黄蜂', '大黄蜂');
-INSERT INTO `user` VALUES ('2', '2016-07-14 15:55:48', '0', 'chenjie', 'chenjie', 'crossoverjie', 'crossoverjie');
+INSERT INTO `user` VALUES ('1', '2016-07-15 16:17:36', '0', 'admin', 'admin', '大黄蜂', '大黄蜂');
 
 -- ----------------------------
 -- Table structure for user_role
@@ -124,8 +124,9 @@ CREATE TABLE `user_role` (
   `user_id` bigint(20) DEFAULT NULL,
   `role_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`user_role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_role
 -- ----------------------------
+INSERT INTO `user_role` VALUES ('1', '2016-07-15 09:55:21', '0', '1', '1');
