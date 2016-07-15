@@ -40,7 +40,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 <div class="error403">
 
-    <h2>非常遗憾，您没有权限访问该页面！</h2>
+    <h2>非常遗憾，您无权访问该页面！</h2>
     <p>看到这个提示，就自认倒霉吧!</p>
     <%--<div class="reindex"><a href="main.html" target="_parent">返回首页</a></div>--%>
 

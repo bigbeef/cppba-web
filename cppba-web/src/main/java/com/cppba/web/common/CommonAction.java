@@ -26,6 +26,6 @@ public class CommonAction {
     public void login(
             HttpServletRequest request, HttpServletResponse response){
         Map<String,Object> map = new HashMap<String,Object>();
-        CommonUtil.responseBuildJson("403","你没有改资源权限!",null,response);
+        CommonUtil.responseBuildJson("403","你无权访问该资源!",null,response);
     }
 }
