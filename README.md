@@ -2,9 +2,8 @@
 
   项目地址:https://github.com/bigbeef/cppba-web
   
-  SpringMVC + Spring + Hibernate 实现的个人博客发布和展示系统，
-javaEE的入门新手可以当做学习项目，欢迎大家提出意见，开发者邮箱:
-245655812@qq.com
+  SpringMVC  + Hibernate + Shiro 全程注解实现的个人博客发布和展示系统，
+javaEE的开发者可以当做学习项目，欢迎大家提出意见，邮箱:245655812@qq.com
 
 注:
 
