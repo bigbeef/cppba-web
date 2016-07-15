@@ -113,7 +113,7 @@ public class MyRealm extends AuthorizingRealm {
         User user = userService.findByUserName(token.getUsername());
         if (null != user) {
             AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), user.getNickName());
-            this.setSession("currentUser", user);
+            this.setSession("user", user);
             return authcInfo;
         }
         return null;
@@ -129,7 +129,7 @@ public class MyRealm extends AuthorizingRealm {
         Subject currentUser = SecurityUtils.getSubject();
         if (null != currentUser) {
             Session session = currentUser.getSession();
-            System.out.println("Session默认超时时间为[" + session.getTimeout() + "]毫秒");
+            //System.out.println("Session默认超时时间为[" + session.getTimeout() + "]毫秒");
             if (null != session) {
                 session.setAttribute(key, value);
             }

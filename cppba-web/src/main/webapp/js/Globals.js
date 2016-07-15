@@ -37,7 +37,7 @@ function ajaxCommonResultHandle(json){
         return;
     }
     if(json.result == 403){
-        alert(json.msg);
+        //alert(json.msg);
         window.location.href= getPath()+"/pages/403.jsp";
         return;
     }

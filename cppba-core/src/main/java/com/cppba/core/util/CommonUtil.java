@@ -4,15 +4,13 @@ import com.cppba.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -37,18 +35,17 @@ public class CommonUtil {
     }
     
     //获取session
-    public static Session getSession(){
-        //HttpSession session = request.getSession();
-        //User user = (User) session.getAttribute("user");
-        Subject currentUser = SecurityUtils.getSubject();
-        Session session = currentUser.getSession();
+    public static HttpSession getSession(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        //Subject currentUser = SecurityUtils.getSubject();
+        //Session session = currentUser.getSession();
         return session;
     }
     
     //从session中获取user
     public static User getUserFromSession(HttpServletRequest request){
-        Session session = getSession();
-        User user = (User) session.getAttribute("currentUser");
+        HttpSession session = getSession(request);
+        User user = (User) session.getAttribute("user");
         return user;
     }
 
