@@ -38,7 +38,7 @@ public class MyRealm extends AuthorizingRealm {
     @Resource
     private UserService userService;
 
-    
+
     /**
      * 为当前登录的Subject授予角色和权限
      * <p>
@@ -114,9 +114,7 @@ public class MyRealm extends AuthorizingRealm {
 
         User user = userService.findByUserName(token.getUsername());
         if (null != user) {
-            //System.out.println(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
             AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), user.getNickName());
-            //AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getUserName(), DigestUtils.md5DigestAsHex(user.getPassword().getBytes()), user.getNickName());
             this.setSession("user", user);
             return authcInfo;
         }

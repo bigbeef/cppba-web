@@ -6,12 +6,14 @@ import com.cppba.dto.UserDto;
 import com.cppba.entity.User;
 import com.cppba.service.UserService;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -61,27 +63,25 @@ public class UserAction {
         UserDto userDto = new UserDto();
         User user = new User();
         user.setUserName(userName);
-        user.setPassword(password);
+        //user.setPassword(password);
         userDto.setUser(user);
         PageEntity<User> pe = userService.query(userDto);
         List<User> userList = pe.getList();
         if(userList.size()>0){//登录成功
             mv = new ModelAndView("redirect:/pages/main.jsp");
             User u = userList.get(0);
-            
-            /*HttpSession session = request.getSession();
-            session.setAttribute("user",u);
-
-            Cookie cookie = new Cookie("userId",u.getUserId()+"");
-            cookie.setMaxAge(1000*60*60*24*365*100);
-            response.addCookie(cookie);*/
 
             SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());
             // 登录后存放进shiro token  
-            UsernamePasswordToken token = new UsernamePasswordToken(u.getUserName(), u.getPassword());
+            UsernamePasswordToken token = new UsernamePasswordToken(userName,password);
             Subject subject = SecurityUtils.getSubject();
-            subject.login(token);
-
+            try{
+                subject.login(token);
+            }catch (AuthenticationException ae){
+                logger.info("用户{}尝试登陆失败！",userName);
+                mv = new ModelAndView("redirect:/login.htm");
+                redirectAttributes.addFlashAttribute("error","用户名密码错误！");
+            }
         }else{//用户名密码错误
             mv = new ModelAndView("redirect:/login.htm");
             redirectAttributes.addFlashAttribute("error","用户名密码错误！");

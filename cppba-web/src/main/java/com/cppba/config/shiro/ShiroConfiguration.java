@@ -2,6 +2,8 @@ package com.cppba.config.shiro;
 
 
 import com.cppba.realm.MyRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.authc.credential.Md5CredentialsMatcher;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -23,19 +25,12 @@ import java.util.Properties;
 @Configuration
 public class ShiroConfiguration {
     
-    //credentialsMatcher(shiro登录密码有过加密)
-    /*@Bean
-    public CredentialsMatcher credentialsMatcher(){
-        //HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher("MD5");
-        CredentialsMatcher credentialsMatcher = new CustomCredentialsMatcher();
-        return credentialsMatcher;
-    }*/
-    
     //myRealm
     @Bean
     public MyRealm myRealm() {
         MyRealm myRealm = new MyRealm();
-        //myRealm.setCredentialsMatcher(credentialsMatcher());
+        //MD5加密
+        myRealm.setCredentialsMatcher(new HashedCredentialsMatcher("MD5"));
         return myRealm;
     }
 
