@@ -111,7 +111,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '2016-07-15 16:17:36', '0', 'admin', 'admin', '大黄蜂', '大黄蜂');
+INSERT INTO `user` VALUES ('1', '2016-07-15 16:17:36', '0', 'admin', '21232f297a57a5a743894a0e4a801fc3', '大黄蜂', '大黄蜂');
 
 -- ----------------------------
 -- Table structure for user_role
