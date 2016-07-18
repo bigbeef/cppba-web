@@ -144,5 +144,11 @@
             <artifactId>shiro-spring</artifactId>
             <version>1.2.6</version>
         </dependency>
+        <!-- 谷歌二维码 -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.2.1</version>
+        </dependency>
     </dependencies>
 </project>
