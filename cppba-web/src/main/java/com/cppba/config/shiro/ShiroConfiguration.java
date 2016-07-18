@@ -22,10 +22,21 @@ import java.util.Properties;
  */
 @Configuration
 public class ShiroConfiguration {
+    
+    //credentialsMatcher(shiro登录密码有过加密)
+    /*@Bean
+    public CredentialsMatcher credentialsMatcher(){
+        //HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher("MD5");
+        CredentialsMatcher credentialsMatcher = new CustomCredentialsMatcher();
+        return credentialsMatcher;
+    }*/
+    
     //myRealm
     @Bean
     public MyRealm myRealm() {
-        return new MyRealm();
+        MyRealm myRealm =  new MyRealm();
+        //myRealm.setCredentialsMatcher(credentialsMatcher());
+        return myRealm;
     }
 
     //securityManager
