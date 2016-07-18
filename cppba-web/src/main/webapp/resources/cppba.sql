@@ -102,7 +102,7 @@ CREATE TABLE `user` (
   `add_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `delete_status` int(11) DEFAULT '0',
   `user_name` varchar(16) DEFAULT NULL COMMENT '账号',
-  `password` varchar(16) DEFAULT NULL COMMENT '密码',
+  `password` varchar(32) DEFAULT NULL COMMENT '密码',
   `nick_name` varchar(16) DEFAULT NULL COMMENT '昵称',
   `remark` text COMMENT '个人简介',
   PRIMARY KEY (`user_id`)

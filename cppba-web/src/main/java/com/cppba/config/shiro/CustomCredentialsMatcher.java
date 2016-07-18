@@ -11,8 +11,8 @@ import org.springframework.util.DigestUtils;
  *
  * @author q
  */
-public class CustomCredentialsMatcher extends SimpleCredentialsMatcher {
-    @Override
+public class CustomCredentialsMatcher /*extends SimpleCredentialsMatcher*/ {
+   /* @Override
     public boolean doCredentialsMatch(AuthenticationToken authcToken, AuthenticationInfo info) {
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 
@@ -29,5 +29,5 @@ public class CustomCredentialsMatcher extends SimpleCredentialsMatcher {
         String MD5Password = DigestUtils.md5DigestAsHex(data.getBytes());
         System.out.println(MD5Password);
         return MD5Password;
-    }
+    }*/
 }  

@@ -34,7 +34,7 @@ public class ShiroConfiguration {
     //myRealm
     @Bean
     public MyRealm myRealm() {
-        MyRealm myRealm =  new MyRealm();
+        MyRealm myRealm = new MyRealm();
         //myRealm.setCredentialsMatcher(credentialsMatcher());
         return myRealm;
     }
@@ -52,8 +52,8 @@ public class ShiroConfiguration {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager());
         shiroFilterFactoryBean.setLoginUrl("/login.htm");
-        //shiroFilterFactoryBean.setSuccessUrl("/pages/main.jsp");//注解不需要这个
-        //shiroFilterFactoryBean.setUnauthorizedUrl("/pages/403.jsp");//注解不需要这个
+        //shiroFilterFactoryBean.setSuccessUrl("/pages/main.jsp");//shiro注解不需要这个
+        //shiroFilterFactoryBean.setUnauthorizedUrl("/pages/403.jsp");//shiro注解不需要这个
         return shiroFilterFactoryBean;
     }
 
