@@ -22,6 +22,10 @@
             $(window).resize(function(){
                 $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
             })
+            //更换验证码
+            $("#imgAuthCode").click(function(){
+                $(this).attr("src",getPath()+"/auth_image.htm?v="+Math.random());
+            })
         });
     </script>
 </head>
@@ -50,7 +54,7 @@
                 <li>
                     <label style="font-size: 16px;padding-left: 0px;">
                         <input name="authCode" class="logincode" placeholder="验证码"/>
-                        <img src="${pageContext.request.contextPath}/auth_image.htm" style="width: 80px;height: 40px;margin-bottom: -15px;"/>
+                        <img id="imgAuthCode" src="${pageContext.request.contextPath}/auth_image.htm" style="width: 80px;height: 40px;margin-bottom: -15px;"/>
                     </label>
                     <input name="" type="button" class="loginbtn" value="登录"  onclick="javascript:$('#form').submit()"  />
                     <br/><label style="color: red;font-size: 16px;">${error}</label>
