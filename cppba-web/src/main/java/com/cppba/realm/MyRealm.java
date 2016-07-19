@@ -22,7 +22,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
-import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -114,7 +113,7 @@ public class MyRealm extends AuthorizingRealm {
 
         User user = userService.findByUserName(token.getUsername());
         if (null != user) {
-            AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), user.getNickName());
+            AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getUserName(), user.getPassword(), "MyRealm");
             this.setSession("user", user);
             return authcInfo;
         }
