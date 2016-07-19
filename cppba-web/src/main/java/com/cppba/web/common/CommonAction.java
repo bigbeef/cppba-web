@@ -2,6 +2,7 @@ package com.cppba.web.common;
 
 import com.cppba.core.util.CommonUtil;
 import com.cppba.core.util.QRCodeUtil;
+import com.cppba.core.util.VerifyCodeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
@@ -52,10 +54,8 @@ public class CommonAction {
 
         ImageIO.write(image, "png",response.getOutputStream());
     }
-
-    /**
-     * 下载二维码
-     */
+    
+     //下载二维码
     @RequestMapping("/download_qrcode_image.htm")
     public void download_qrcode_image(
             HttpServletRequest request,HttpServletResponse response,
@@ -65,5 +65,25 @@ public class CommonAction {
 
         BufferedImage image = QRCodeUtil.QRCodeCreate(text, 250, 250);
         ImageIO.write(image, "png",response.getOutputStream());
+    }
+    
+    // 生成图片验证码
+    @RequestMapping("/auth_image.htm")
+    public void auth_Image(HttpServletRequest request,
+                           HttpServletResponse response) throws IOException {
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        response.setContentType("image/jpeg");
+
+        // 生成随机字串
+        String verifyCode = VerifyCodeUtils.generateVerifyCode(4);
+        // 存入会话session
+        HttpSession session = CommonUtil.getSession(request);
+        session.setAttribute("rand", verifyCode.toLowerCase());
+        // 生成图片
+        int w = 200, h = 80;
+        VerifyCodeUtils.outputImage(w, h, response.getOutputStream(),
+                verifyCode);
     }
 }

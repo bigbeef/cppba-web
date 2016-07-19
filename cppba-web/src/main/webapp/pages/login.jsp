@@ -45,12 +45,18 @@
     <div class="loginbox">
         <form action="login_system.htm" method="post" id="form">
             <ul>
-                <li><input name="userName" type="text" class="loginuser" value="账号" onclick="JavaScript:this.value=''"/></li>
-                <li><input name="password" type="password" class="loginpwd" value="密码" onclick="JavaScript:this.value=''"/></li>
-                <li><input name="" type="button" class="loginbtn" value="登录"  onclick="javascript:$('#form').submit()"  />
-                    <label style="color: red;font-size: 16px;">${error}</label>
+                <li><input name="userName" type="text" class="loginuser" placeholder="账号"/></li>
+                <li><input name="password" type="password" class="loginpwd" placeholder="密码"/></li>
+                <li>
+                    <label style="font-size: 16px;padding-left: 0px;">
+                        <input name="authCode" class="logincode" placeholder="验证码"/>
+                        <img src="${pageContext.request.contextPath}/auth_image.htm" style="width: 80px;height: 40px;margin-bottom: -15px;"/>
+                    </label>
+                    <input name="" type="button" class="loginbtn" value="登录"  onclick="javascript:$('#form').submit()"  />
+                    <br/><label style="color: red;font-size: 16px;">${error}</label>
                     <%--<label><input name="" type="checkbox" value="" checked="checked" />记住密码</label>
                     <label><a href="#">忘记密码？</a></label></li>--%>
+                </li>
             </ul>
         </form>
     </div>

@@ -3,6 +3,7 @@ package com.cppba.core.util;
 import com.cppba.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,7 @@ public class CommonUtil {
 
     private static Logger logger = LoggerFactory.getLogger(CommonUtil.class);
 
+    //判断是否是ajax请求
     public static boolean isAjaxRequerst(HttpServletRequest request){
         String requestType = request.getHeader("X-Requested-With");
         if(StringUtils.equals(requestType,"XMLHttpRequest")){
@@ -93,4 +95,41 @@ public class CommonUtil {
         }
         return null;
     }
+
+    //判断Integer为空或者等于0
+    public static boolean isIntegerNullOrZero(Integer integer){
+        return integer==null || ObjectUtils.equals(integer,0);
+    }
+
+    //获取项目根路径
+    public static String getBasePath(HttpServletRequest request){
+        String path = request.getContextPath();
+        return request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    }
+
+    //根获取请求终端IP
+    public static String getIpAddr(HttpServletRequest request) {
+        String ip = request.getHeader("x-forwarded-for");
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+        if (ip.equals("0:0:0:0:0:0:0:1")) {
+            java.net.InetAddress addr = null;
+            try {
+                addr = java.net.InetAddress.getLocalHost();
+            } catch (java.net.UnknownHostException e) {
+                e.printStackTrace();
+            }
+            ip = addr.getHostAddress()==null?"":addr.getHostAddress();// 获得本机IP
+        }
+        return ip;
+    }
+    
+    
 }

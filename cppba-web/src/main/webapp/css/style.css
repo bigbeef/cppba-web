@@ -46,6 +46,7 @@ h2{font-weight:normal;}
 .loginbm{height:50px; line-height:50px; text-align:center; background:url(../images/loginbg2.png) repeat-x;position:absolute; bottom:0; width:100%; color:#0b3a58;}
 .loginbm a{font-weight:bold;color:#0b3a58;}
 .loginbm a:hover{color:#fff;}
+.logincode{width:80px; height:35px; border:solid #c1d0d9 2px; line-height:48px;padding-left:10px; font-size:16px;color:#90a2bc;border-radius: 4px;}
 
 
 /*top.jsp*/

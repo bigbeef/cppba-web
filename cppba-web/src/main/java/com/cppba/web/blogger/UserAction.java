@@ -5,6 +5,7 @@ import com.cppba.core.util.CommonUtil;
 import com.cppba.dto.UserDto;
 import com.cppba.entity.User;
 import com.cppba.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -13,7 +14,6 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,8 +59,18 @@ public class UserAction {
             HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value="userName", defaultValue="")String userName,
             @RequestParam(value="password", defaultValue="")String password,
+            @RequestParam(value="authCode", defaultValue="")String authCode,
             RedirectAttributes redirectAttributes){
         ModelAndView mv = null;
+
+        HttpSession session = CommonUtil.getSession(request);
+        String code = (String) session.getAttribute("rand");
+        if(!StringUtils.equalsIgnoreCase(code,authCode)){
+            mv = new ModelAndView("redirect:/login.htm");
+            redirectAttributes.addFlashAttribute("error","验证码错误！");
+            return mv;
+        }
+
         UserDto userDto = new UserDto();
         User user = new User();
         user.setUserName(userName);
