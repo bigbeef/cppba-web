@@ -13,9 +13,13 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<meta http-equiv="expires" content="0">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>博客</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/bootstrap.min.css?v=<%=version%>">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/style.css?v=<%=version%>" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/jquery-1.8.0.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/index.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/globals.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/jqPaginator.js" ></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/js.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/index.js"></script>
 </head>
 <body>
 
@@ -42,7 +46,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					<li><a href="#">分类</a></li>
 				
 					<li><a href="#">时光机</a></li>
-					
+
+                    <li><a href="${pageContext.request.contextPath}/system/blogger/main.jsp">登陆</a></li>
 					<li>
  					     <!-- autocomplete="off" 关闭自动填充 -->
 						<form class="search">
@@ -55,7 +60,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			</nav>
           </div>
       </div>
-      <div class="container">
+      <div class="cppba_container">
           <div class="main">
 				<section class="post" itemscope="" itemprop="blogitem">
 				    <a href="#" title="如何制作微课系列——（第一天）微课选题怎么玩？" itemprop="url">
@@ -99,7 +104,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				  </a>
 				</section>
 
-				<div class="SwiperBtnBox">
+				<%--<div class="SwiperBtnBox">
 					<div class="prev">Prev</div>
 					<div class="Next">Next</div>
 					<ul class="SwiperUl">
@@ -107,7 +112,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					     <li>2</li>
 					     <li>3</li>
 					</ul>
-				</div>
+				</div>--%>
+              <div class="page_div">
+                  <ul class="pagination" id="pagination"></ul>
+              </div>
           </div>
           <div class="asidepart">
               <ul class="mainMenu">

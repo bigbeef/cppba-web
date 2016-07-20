@@ -39,7 +39,7 @@
 <div class="logintop">
     <span>欢迎登录后台管理界面平台</span>
     <ul>
-        <li><a href="#">回首页</a></li>
+        <li><a href="${pageContext.request.contextPath}/index.jsp">回首页</a></li>
         <li><a href="#">帮助</a></li>
         <li><a href="#">关于</a></li>
     </ul>

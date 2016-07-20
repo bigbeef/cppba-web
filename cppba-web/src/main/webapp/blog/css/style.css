@@ -39,15 +39,16 @@ border: 1px solid #ffffff!important;
 .search > label{ display: none;}
 .animated > ul > li > a:hover{ background: rgba(0,0,0,0.2); color:#e9cd4c;}
 #search{ height: 30px; line-height: 30px; width: 160px; vertical-align: middle; padding: 0px 6px;}
-.container{ width: 1360px; margin:20px auto; overflow: hidden;}
+.cppba_container{ width: 1360px; margin:20px auto; overflow: hidden;}
 .main,.asidepart{ float: left;}
-.main{ width: 1000px;}
+.main{ width: 1000px; min-height: 600px;}
 .asidepart{ width: 290px; background: #ffffff; margin-left: 50px;}
 .main > section.post{ background:#fafafa; margin-bottom: 4px; border-left: 10px solid #eeeeee; padding: 20px 15px;}
 .main > section.post:hover{border-left: 10px solid #2ca6cb;}
-.main > section.post > a > h1{ color:#2ca6cb;}
-.main > section.post > a > p{ color:#817c7c; margin-top: 18px; line-height: 26px; font-family: "Microsoft YaHei";max-height:78px; overflow:hidden;}
-.main > section.post > a > time{ color:#817c7c; margin-top: 18px; font-size: 80%; font-family: "Microsoft YaHei"; display: block;}
+.main > section.post h1{ color:#2ca6cb;}
+.main > section.post:hover{cursor: pointer;}
+.main > section.post p{ color:#817c7c; margin-top: 18px; line-height: 26px; font-family: "Microsoft YaHei";max-height:78px; overflow:hidden;}
+.main > section.post time{ color:#817c7c; margin-top: 18px; font-size: 80%; font-family: "Microsoft YaHei"; display: block;}
 .asidepart > ul.mainMenu{padding: 20px 10px; font-size: 110%; color:#2ca6cb; font-family: "Microsoft YaHei"}
 .asidepart > ul.mainMenu > li{ list-style: none; display: block; height: 50px; line-height: 50px; overflow: hidden;}
 .mainMenuTitle{ width: 100%; height: 50px; border-bottom: 4px solid #eeeeee; box-sizing:border-box;
@@ -63,12 +64,12 @@ ul.innerMenu > li > a{ display: block; width: 100%; height: 100%; font-size: 90%
 ul.innerMenu > li > a:hover{ color:#292a2a;}
 .footer{ width: 100%; height: 200px;background: #1f1f1f;}
 .SwiperBtnBox{ width: 100%; height: 44px; background:#ffffff; overflow: hidden; text-align: center;}
-.prev,.Next{ display: inline-block; width: 90px; height: 44px; color:#2ca6cb; line-height: 44px; text-align: center;}
+/*.prev,.Next{ display: inline-block; width: 90px; height: 44px; color:#2ca6cb; line-height: 44px; text-align: center;}*/
 .Next:after { content: ">"; font-weight: bold; font-size: 130%; vertical-align: middle;} 
-.prev:before { content: "<"; font-weight: bold; font-size: 130%; vertical-align: middle; margin-right:5px;}
-.prev{ float: left;}
+/*.prev:before { content: "<"; font-weight: bold; font-size: 130%; vertical-align: middle; margin-right:5px;}*/
+/*.prev{ float: left;}*/
 .Next{ float: right;}
-.prev:hover,.Next:hover{ cursor: pointer; background: rgba(0,0,0,0.2);}
+/*.prev:hover,.Next:hover{ cursor: pointer; background: rgba(0,0,0,0.2);}*/
 ul.SwiperUl{ height: 44px;}
 ul.SwiperUl > li{ list-style: none; display: inline-block; color:#2ca6cb; line-height: 44px; height: 44px; width: 30px; font-weight: bold;}
 ul.SwiperUl > li:hover{ cursor: pointer; background: rgba(0,0,0,0.2); color:#ea6753 !important;}
@@ -86,3 +87,4 @@ ul.SwiperUl > li:hover{ cursor: pointer; background: rgba(0,0,0,0.2); color:#ea6
 .WeChat{ background-image: url(../images/fxlogin.png) !important; background-position: -92px 4px; background-repeat: no-repeat;}
 .Renren{ background-image: url(../images/fxlogin.png) !important; background-position: -44px 4px; background-repeat: no-repeat;}
 .Tweet:hover,.WeChat:hover,.Renren:hover{ background-color:#2ca6cb; cursor: pointer;}
+.page_div{text-align: center}

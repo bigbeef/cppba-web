@@ -1,18 +1,94 @@
+var userId = 1;
+var page = 1;
+var pageSize=10;
 $(function(){
-	$(".mainMenuTitle").bind("click",function(){
-		//alert($(this).parent().height());
-		//var length = $(this).next().find("li").length * 40 + 50;
-		//alert(length);
-		if($(this).parent().height() == 50){
-			$(this).parent().animate({height:$(this).next().find("li").length * 40 + 50 + "px"});
-		} else{
-			$(this).parent().animate({height:"50px"});
-		}
-		//alert(lenght);
-		/*if($(this).parent().height() == 50){
-			$(this).parent().css({"height":"auto"});
-		} else{
-			$(this).parent().css({"height":"50px"});
-		}*/
-	});
+    //初始化分页插件
+    initJqPaginator();
+    //初始化文章列表
+    list_article();
+    //初始化博主
+    user_load();
 })
+
+//初始化博主
+function user_load(){
+    $.ajax({
+        type: 'POST',
+        url: getPath() + '/user_load.htm',
+        data: {userId:userId},
+        dataType: 'json',
+        async: false,
+        success: function (data) {
+            if (data.result == 1) {
+                var user = data.data.user;
+                $(".Name").text(user.nickName);
+                //$("[name=nickName]").val(user.nickName);
+                //$("[name=remark]").val(user.remark);
+            } else {
+                ajaxCommonResultHandle(data);
+            }
+        }
+    })
+}
+
+//初始化文章列表
+function list_article(){
+    $(".main > section").remove();
+    $.ajax({
+        type: 'POST',
+        url: getPath() + '/article_query.htm',
+        data: {userId:userId,page:page,pageSize:pageSize},
+        dataType: 'json',
+        async: false,
+        success: function (data) {
+            if (data.result == 1) {
+                var count = data.data.count;
+                var articles = data.data.articles;
+                var html = "";
+                for(var i=0;i<articles.length;i++){
+                    var article = articles[i].article;
+                    var addTime = new Date();
+                    addTime.setTime(article.addTime);
+                    html += '<section class="post" itemscope="" itemprop="blogitem"> ' +
+                        //'<a href="#" title="'+article.title+'" itemprop="url"> ' +
+                        '<h1 itemprop="name">'+article.title+'</h1> ' +
+                        '<p itemprop="description"> ' + article.abstracts+'</p> ' +
+                        '<time datetime="'+addTime.format("yyyy-MM-dd")+'" itemprop="datePublished">'+
+                        addTime.format("yyyy-MM-dd")+'</time> ' +
+                        //'</a> ' +
+                        '</section>';
+                }
+                $(".main").prepend(html);
+                //这里写列表的总数
+                $('.product_length_number').text(count);
+                //这里是分页的插件
+                $('#pagination').jqPaginator('option', {
+                    totalPages:(Math.ceil(count/pageSize)<1?1:Math.ceil(count/pageSize)),
+                    currentPage: page
+                });
+            } else {
+                ajaxCommonResultHandle(data);
+            }
+        }
+    })
+}
+
+//初始化分页
+function initJqPaginator(){
+    $.jqPaginator('#pagination', {
+        totalPages: 100,
+        visiblePages: 10,
+        currentPage: 1,
+        first:'<li class="prev"><a href="javascript:;">首页</a></li>',
+        last:'<li class="prev"><a href="javascript:;">末页</a></li>',
+        prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
+        next: '<li class="next"><a href="javascript:;">下一页</a></li>',
+        page: '<li class="page"><a href="javascript:;">{{page}}</a></li>',
+        onPageChange: function (num, type) {
+            page=num;
+            if(type=="change"){
+                list_article();
+            }
+        }
+    });
+}

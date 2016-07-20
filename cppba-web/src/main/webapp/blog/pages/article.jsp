@@ -15,7 +15,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <title>博客</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/style.css?v=<%=version%>" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/jquery-1.8.0.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/index.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/js.js"></script>
 </head>
 <body>
   <div class="wapper">
@@ -54,7 +54,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			</nav>
           </div>
       </div>
-      <div class="container">
+      <div class="cppba_container">
           <div class="main">
 				<div class="articleTitle">如何制作微课系列——（第一天）微课选题怎么玩？</div>
 				<div class="articleContent">
