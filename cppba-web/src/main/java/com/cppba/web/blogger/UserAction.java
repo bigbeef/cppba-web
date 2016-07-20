@@ -50,7 +50,7 @@ public class UserAction {
             return null;
         } 
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("/pages/login.jsp");
+        mv.setViewName("/system/blogger/login.jsp");
         return mv;
     }
 
@@ -79,7 +79,7 @@ public class UserAction {
         PageEntity<User> pe = userService.query(userDto);
         List<User> userList = pe.getList();
         if(userList.size()>0){//登录成功
-            mv = new ModelAndView("redirect:/pages/main.jsp");
+            mv = new ModelAndView("redirect:/system/blogger/main.jsp");
             User u = userList.get(0);
 
             SecurityUtils.getSecurityManager().logout(SecurityUtils.getSubject());

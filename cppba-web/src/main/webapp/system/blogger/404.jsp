@@ -13,9 +13,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <meta http-equiv="expires" content="0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css?v=<%=version%>">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/system/css/style.css?v=<%=version%>">
     <script type="text/javascript"
-            src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js?v=<%=version%>"></script>
+            src="${pageContext.request.contextPath}/system/js/jquery-1.11.1.min.js?v=<%=version%>"></script>
     <script language="javascript">
         $(function () {
             $('.error').css({'position': 'absolute', 'left': ($(window).width() - 490) / 2});

@@ -13,23 +13,22 @@
     <meta http-equiv="expires" content="0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css?v=<%=version%>">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.css?v=<%=version%>"  />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editormd.css?v=<%=version%>" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/system/css/style.css?v=<%=version%>">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/system/css/select.css?v=<%=version%>"  />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/system/css/editormd.css?v=<%=version%>" />
     <style type="text/css">
         #markdown select{opacity:1;filter:alpha(opacity=1);}
         #markdown li{margin-bottom: 0px;}
     </style>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/globals.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/select-ui.min.js?v=<%=version%>"></script>
-    <script src="${pageContext.request.contextPath}/js/editormd.min.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/article_add.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/system/js/jquery-1.11.1.min.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/system/js/globals.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/system/js/select-ui.min.js?v=<%=version%>"></script>
+    <script src="${pageContext.request.contextPath}/system/js/editormd.min.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/system/js/article_add.js?v=<%=version%>"></script>
 
 </head>
 
 <body>
-<input id="userId" type="hidden" value="${user.userId}"/>
 <div class="place">
     <span>位置：</span>
     <ul class="placeul">

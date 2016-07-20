@@ -12,16 +12,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/css/style.css?v=<%=version%>">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/select.css?v=<%=version%>" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/globals.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/article_class_list.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/dhf.js?v=<%=version%>"></script>
+    <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/system/css/style.css?v=<%=version%>">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/system/css/select.css?v=<%=version%>" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/system/js/jquery-1.11.1.min.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/system/js/globals.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/system/js/article_class_list.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/system/js/dhf.js?v=<%=version%>"></script>
 </head>
 
 <body>
-<input id="userId" type="hidden" value="${user.userId}"/>
     <div class="place">
     <span>位置：</span>
     <ul class="placeul">
