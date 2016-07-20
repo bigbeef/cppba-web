@@ -1,8 +1,10 @@
 <html>
-<head></head>
+<head>
+    <script>
+        window.location.href = "blog/pages/index.jsp";
+    </script>
+</head>
 <body>
 <h2>Hello World!</h2>
-<h2>${msg}</h2>
-<h2>${msg1}</h2>
 </body>
 </html>
