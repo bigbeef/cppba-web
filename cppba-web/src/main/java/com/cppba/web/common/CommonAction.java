@@ -1,13 +1,17 @@
 package com.cppba.web.common;
 
+import com.cppba.core.constant.Globals;
 import com.cppba.core.util.CommonUtil;
 import com.cppba.core.util.QRCodeUtil;
+import com.cppba.core.util.UploadFileUtil;
 import com.cppba.core.util.VerifyCodeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -69,8 +73,8 @@ public class CommonAction {
     
     // 生成图片验证码
     @RequestMapping("/auth_image.htm")
-    public void auth_Image(HttpServletRequest request,
-                           HttpServletResponse response) throws IOException {
+    public void auth_Image(
+            HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setHeader("Pragma", "No-cache");
         response.setHeader("Cache-Control", "no-cache");
         response.setDateHeader("Expires", 0);
@@ -85,5 +89,22 @@ public class CommonAction {
         int w = 200, h = 80;
         VerifyCodeUtils.outputImage(w, h, response.getOutputStream(),
                 verifyCode);
+    }
+
+    //图片上传
+    //path   例如:"/Image/article"
+    @RequestMapping("/upload_file.action")
+    public void upload_file(
+            HttpServletRequest request, HttpServletResponse response,
+            @RequestParam(value="path", defaultValue="/Image/common")String path
+    ) throws IOException {
+        Map<String,Object> map = new HashMap<String,Object>();
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        CommonsMultipartFile file = (CommonsMultipartFile) multipartRequest.getFile("imgFile");
+        String name = UploadFileUtil.uploadImg(file, path);
+        map.put("error", 0);
+        map.put("url", Globals.img_server_url+path + name);
+        // 构建返回
+        CommonUtil.responseBuildJson("1","上传成功",map,response);
     }
 }

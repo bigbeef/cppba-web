@@ -11,6 +11,7 @@ public class Globals {
     
     //文件上传路径
     public static String getFileSystemPath(){
+        //FileSystem是图片服务器的软链接
         return "../../FileSystem";
     }
 
