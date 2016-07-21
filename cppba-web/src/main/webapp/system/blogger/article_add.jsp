@@ -60,7 +60,7 @@
                 </select>
             </div>
         </li>
-        <li><label>文章标题</label><input id="title" name="" type="text" class="dfinput"/><i>标题不能超过30个字符</i></li>
+        <li><label>文章标题</label><input id="title" name="" type="text" class="dfinput"/><i>标题不能超过128个字符</i></li>
         <li><label>文章简介</label>
             <textarea id="abstracts" name="" cols="" rows="" class="textinput"></textarea><i>用于首页展示</i>
         </li>

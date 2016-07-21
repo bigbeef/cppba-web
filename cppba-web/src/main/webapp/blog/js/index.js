@@ -8,6 +8,10 @@ $(function(){
     list_article();
     //初始化博主
     user_load();
+    $(".post").click(function(){
+        var articleId = $(this).attr("articleId");
+        window.location.href = "article.jsp?articleId="+articleId;
+    })
 })
 
 //初始化博主
@@ -49,7 +53,7 @@ function list_article(){
                     var article = articles[i].article;
                     var addTime = new Date();
                     addTime.setTime(article.addTime);
-                    html += '<section class="post" itemscope="" itemprop="blogitem"> ' +
+                    html += '<section class="post" itemscope="" itemprop="blogitem" articleId="'+article.articleId+'"> ' +
                         //'<a href="#" title="'+article.title+'" itemprop="url"> ' +
                         '<h1 itemprop="name">'+article.title+'</h1> ' +
                         '<p itemprop="description"> ' + article.abstracts+'</p> ' +

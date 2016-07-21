@@ -72,7 +72,8 @@ public class ArticlesServiceImpl implements ArticlesService{
 		}
 
 		//未被删除的
-		hql += " and deleteStatus = 0";
+		hql += " and deleteStatus = 0 ";
+		hql += " order by articles.addTime desc ";
 		List list = articlesDao.query(hql,params,page,pageSize);
 		long count = articlesDao.count(hql,params);
 		PageEntity<Articles> pe = new PageEntity<Articles>();

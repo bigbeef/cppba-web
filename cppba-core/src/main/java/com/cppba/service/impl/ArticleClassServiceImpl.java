@@ -68,9 +68,10 @@ public class ArticleClassServiceImpl implements ArticleClassService {
             hql += " and articleClass.userId = :userId ";
             params.put("userId",articleClass.getUserId());
         }
-        
+
         //未被删除的
-        hql += " and deleteStatus = 0";
+        hql += " and deleteStatus = 0 ";
+        hql += " order by articleClass.addTime desc";
         List list = articleClassDao.query(hql,params,page,pageSize);
         long count = articleClassDao.count(hql,params);
         PageEntity<ArticleClass> pe = new PageEntity<ArticleClass>();

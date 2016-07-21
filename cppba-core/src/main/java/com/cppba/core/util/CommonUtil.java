@@ -104,7 +104,7 @@ public class CommonUtil {
 
     //判断Integer为空或者等于0
     public static boolean isIntegerNullOrZero(Integer integer){
-        return integer==null || ObjectUtils.equals(integer,0);
+        return integer==null || !ObjectUtils.notEqual(integer,0);
     }
 
     //获取项目根路径
