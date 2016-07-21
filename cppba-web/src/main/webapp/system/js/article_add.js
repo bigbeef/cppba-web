@@ -28,7 +28,7 @@ $(function () {
         markdown:markdown,
         imageUpload    : true,
         imageFormats   : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-        imageUploadURL : getPath()+"/upload_file.htm?isImage=true&fileName=editormd-image-file&path=/Image/article",
+        imageUploadURL : getPath()+"/upload_file.htm?isImage=true&fileName=editormd-image-file&path=Image/article",
     });
     //提交
     $("#submit").click(function(){

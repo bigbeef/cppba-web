@@ -44,31 +44,31 @@ public class UploadFileUtil {
 		return name;
 	}
 
-	// 图片上传
-	public static String uploadFile(MultipartFile file, String path,boolean isImage) {
-		String root = Globals.getFileSystemPath() + path;
-		// 创建文件夹
-		File dirFile = new File(root);
-		if (!dirFile.exists()) {
-			dirFile.mkdirs();
-		}
-		// 获得图片后缀名
-		String fileName = file.getOriginalFilename();
-		String fileExt = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
+    // 图片上传
+    public static String uploadFile(MultipartFile file, String path,boolean isImage) {
+        String root = Globals.getFileSystemPath() + path;
+        // 创建文件夹
+        File dirFile = new File(root);
+        if (!dirFile.exists()) {
+            dirFile.mkdirs();
+        }
+        // 获得图片后缀名
+        String fileName = file.getOriginalFilename();
+        String fileExt = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
 
-		InputStream is;
-		String name = UUID.randomUUID().toString()+fileExt;
-		try {
-			is = file.getInputStream();
-			File descfile = new File(root, name);
-			OutputStream os = new FileOutputStream(descfile);
-			byte[] buffer = new byte[400];
-			int count = 0;
-			while ((count = is.read(buffer)) > 0) {
-				os.write(buffer, 0, count);
-			}
-			os.close();
-			is.close();
+        InputStream is;
+        String name = UUID.randomUUID().toString()+fileExt;
+        try {
+            is = file.getInputStream();
+            File descfile = new File(root, name);
+            OutputStream os = new FileOutputStream(descfile);
+            byte[] buffer = new byte[400];
+            int count = 0;
+            while ((count = is.read(buffer)) > 0) {
+                os.write(buffer, 0, count);
+            }
+            os.close();
+            is.close();
             //如果是图片则压缩
             if(isImage){
                 // 生成中等缩略图
@@ -76,11 +76,30 @@ public class UploadFileUtil {
                 // 生成小等缩略图
                 ImgCompressUtil.createImgCompress(root + "/" + name, 2);
             }
-			logger.info("{} 文件上传成功为 {}",fileName,name);
-		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
-		}
+            logger.info("{} 文件上传成功为 {}",fileName,name);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
 
-		return name;
-	}
+        return name;
+    }
+
+    //阿里云图片上传
+    public static String uploadFileAliyun(MultipartFile file, String path) {
+        String root = path;
+        // 获得图片后缀名
+        String fileName = file.getOriginalFilename();
+        String fileExt = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
+
+        String name = UUID.randomUUID().toString()+fileExt;
+        InputStream is;
+        try {
+            is = file.getInputStream();
+            AliyunOSSUtil.uploadFile(is,path+"/"+name);
+            logger.info("{} 文件上传成功为 {}",fileName,path+"/"+name);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return name;
+    }
 }

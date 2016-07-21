@@ -1,7 +1,5 @@
 package com.cppba.core.util;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,9 +68,7 @@ public class ImgCompressUtil {
     	try {
     		File destFile = new File(file);
     		FileOutputStream out = new FileOutputStream(destFile); // 输出到文件流
-    		// 可以正常实现bmp、png、gif转jpg
-    		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-    		encoder.encode(img); // JPEG编码
+			ImageIO.write(img, "png", out);
     		out.close();
 		} catch (Exception e) {
 			e.printStackTrace();

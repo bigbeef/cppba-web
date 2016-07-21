@@ -23,6 +23,11 @@ public class Globals {
     public final static String email_password="Service.01"/*"wkwl2014"*/;//发送人密码
     public final static String email_smtp="smtp.mxhichina.com"/*"smtp.exmail.qq.com"*/;//邮件服务器smtp
     public final static String email_server="Service01@51dong.cc";//接收通知
-    
-    
+
+
+    //aliyun-oss
+    public static String endpoint = "http://oss-cn-hongkong.aliyuncs.com";
+    public static String accessKeyId = "KCsxSw9uWTJSz90h";
+    public static String accessKeySecret = "JMlEEkI3nlXF1rkdBDzk9RtH1X5aD3";
+    public static String bucketName = "hk-filesystem";
 }
