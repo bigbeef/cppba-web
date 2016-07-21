@@ -73,16 +73,22 @@ public class CommonUtil {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        response.setContentType("application/json");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setCharacterEncoding("UTF-8");
+        writeToResponse(json,response);
+    }
+
+    /**
+     * 构建response返回json
+     * 直接返回map中的
+     */
+    public static void responseBuildJson(Map<String,Object> map,HttpServletResponse response){
+        String json = "";
         try {
-            PrintWriter writer;
-            writer = response.getWriter();
-            writer.print(json);
-        } catch (IOException e) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            json = objectMapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+        writeToResponse(json,response);
     }
     
     //获取coockie
@@ -131,5 +137,16 @@ public class CommonUtil {
         return ip;
     }
     
-    
+    protected static void writeToResponse(String json,HttpServletResponse response){
+        response.setContentType("application/json");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setCharacterEncoding("UTF-8");
+        try {
+            PrintWriter writer;
+            writer = response.getWriter();
+            writer.print(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

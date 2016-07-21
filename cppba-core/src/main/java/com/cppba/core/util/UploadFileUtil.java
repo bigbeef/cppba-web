@@ -45,7 +45,7 @@ public class UploadFileUtil {
 	}
 
 	// 图片上传
-	public static String uploadImg(MultipartFile file, String path) {
+	public static String uploadFile(MultipartFile file, String path,boolean isImage) {
 		String root = Globals.getFileSystemPath() + path;
 		// 创建文件夹
 		File dirFile = new File(root);
@@ -53,8 +53,8 @@ public class UploadFileUtil {
 			dirFile.mkdirs();
 		}
 		// 获得图片后缀名
-		String imgName = file.getOriginalFilename();
-		String fileExt = imgName.substring(imgName.lastIndexOf(".")).toLowerCase();
+		String fileName = file.getOriginalFilename();
+		String fileExt = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
 
 		InputStream is;
 		String name = UUID.randomUUID().toString()+fileExt;
@@ -69,11 +69,14 @@ public class UploadFileUtil {
 			}
 			os.close();
 			is.close();
-			// 生成中等缩略图
-			ImgCompressUtil.createImgCompress(root + "/" + name, 1);
-			// 生成小等缩略图
-			ImgCompressUtil.createImgCompress(root + "/" + name, 2);
-			logger.info("{} 图片上传成功为 {}",imgName,name);
+            //如果是图片则压缩
+            if(isImage){
+                // 生成中等缩略图
+                ImgCompressUtil.createImgCompress(root + "/" + name, 1);
+                // 生成小等缩略图
+                ImgCompressUtil.createImgCompress(root + "/" + name, 2);
+            }
+			logger.info("{} 文件上传成功为 {}",fileName,name);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}

@@ -19,6 +19,8 @@
     <style type="text/css">
         #markdown select{opacity:1;filter:alpha(opacity=1);}
         #markdown li{margin-bottom: 0px;}
+        #markdown label{width: 75px;line-height: 0px;}
+        #markdown input{border-radius: 6px;}
     </style>
     <script type="text/javascript" src="${pageContext.request.contextPath}/system/js/jquery-1.11.1.min.js?v=<%=version%>"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/system/js/globals.js?v=<%=version%>"></script>

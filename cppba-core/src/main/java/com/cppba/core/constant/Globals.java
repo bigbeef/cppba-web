@@ -16,7 +16,7 @@ public class Globals {
     }
 
     //图片服务器地址
-    public final static String img_server_url="http://image.cppba.com/";
+    public final static String file_server_url ="http://image.cppba.com";
 
     //email
     public final static String email_username="Service01@51dong.cc"/*"5k72@wukow.com"*/;//发送人用户名

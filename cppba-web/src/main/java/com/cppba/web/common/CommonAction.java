@@ -93,18 +93,21 @@ public class CommonAction {
 
     //图片上传
     //path   例如:"/Image/article"
-    @RequestMapping("/upload_file.action")
+    @RequestMapping("/upload_file.htm")
     public void upload_file(
             HttpServletRequest request, HttpServletResponse response,
-            @RequestParam(value="path", defaultValue="/Image/common")String path
+            @RequestParam(value="path", defaultValue="/Image/article")String path,
+            @RequestParam(value="fileName", defaultValue="imgFile")String fileName,
+            @RequestParam(value="isImage", defaultValue="true")boolean isImage
     ) throws IOException {
         Map<String,Object> map = new HashMap<String,Object>();
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-        CommonsMultipartFile file = (CommonsMultipartFile) multipartRequest.getFile("imgFile");
-        String name = UploadFileUtil.uploadImg(file, path);
+        CommonsMultipartFile file = (CommonsMultipartFile) multipartRequest.getFile(fileName);
+        String name = UploadFileUtil.uploadFile(file, path,isImage);
         map.put("error", 0);
-        map.put("url", Globals.img_server_url+path + name);
+        map.put("success", 1);
+        map.put("url", Globals.file_server_url +path+ "/" + name);
         // 构建返回
-        CommonUtil.responseBuildJson("1","上传成功",map,response);
+        CommonUtil.responseBuildJson(map,response);
     }
 }
