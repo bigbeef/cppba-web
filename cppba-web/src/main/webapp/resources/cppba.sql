@@ -25,7 +25,7 @@ CREATE TABLE `articles` (
   `delete_status` int(11) DEFAULT '0',
   `user_id` bigint(20) DEFAULT NULL COMMENT '用户编号',
   `article_class_id` bigint(20) DEFAULT NULL COMMENT '文章分类编号',
-  `title` varchar(32) DEFAULT NULL COMMENT '标题',
+  `title` varchar(128) DEFAULT NULL COMMENT '标题',
   `abstracts` text COMMENT '简介(显示在列表中)',
   `content` text COMMENT '内容',
   PRIMARY KEY (`article_id`)
