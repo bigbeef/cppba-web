@@ -19,6 +19,7 @@ public class Articles implements Serializable {
     private String title;
     private String abstracts;
     private String content;
+    private String html;
 
     @Id
     @Column(name = "article_id")
@@ -98,6 +99,16 @@ public class Articles implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Basic
+    @Column(name = "html")
+    public String getHtml() {
+        return html;
+    }
+
+    public void setHtml(String html) {
+        this.html = html;
     }
 
     @Override

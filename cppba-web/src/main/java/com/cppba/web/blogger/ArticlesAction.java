@@ -93,7 +93,8 @@ public class ArticlesAction {
             @RequestParam(value="articleClassId", defaultValue="0")long articleClassId,
             @RequestParam(value="title", defaultValue="")String title,
             @RequestParam(value="abstracts", defaultValue="")String abstracts,
-            @RequestParam(value="content", defaultValue="") String content){
+            @RequestParam(value="content", defaultValue="") String content,
+            @RequestParam(value="html", defaultValue="") String html){
         Map<String,Object> map = new HashMap<>();
         try {
             User sessionUser = CommonUtil.getUserFromSession(request);
@@ -110,6 +111,7 @@ public class ArticlesAction {
             article.setArticleClassId(articleClassId);
             article.setTitle(title);
             article.setContent(content);
+            article.setHtml(html);
             if(isNew){
                 articlesService.save(article);
             }else{

@@ -13,8 +13,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<meta http-equiv="expires" content="0">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>博客</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/editormd.css?v=<%=version%>" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/planeui.min.css?v=<%=version%>" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/style.css?v=<%=version%>" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/jquery-1.8.0.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/jquery-1.8.0.js?v=<%=version%>"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/globals.js?v=<%=version%>"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/js.js?v=<%=version%>"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/article.js?v=<%=version%>"></script>

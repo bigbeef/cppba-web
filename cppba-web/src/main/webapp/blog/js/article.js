@@ -14,7 +14,7 @@ function load_article(){
             if (data.result == 1) {
                 var article = data.data.article;
                 $(".articleTitle").html(article.title);
-                //$(".articleContent").html();
+                $(".articleContent").html(article.html);
             } else {
                 ajaxCommonResultHandle(data);
             }

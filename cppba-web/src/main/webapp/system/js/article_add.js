@@ -29,6 +29,8 @@ $(function () {
         imageUpload    : true,
         imageFormats   : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
         imageUploadURL : getPath()+"/upload_file.htm?isImage=true&fileName=editormd-image-file&path=Image/article",
+        htmlDecode:true,
+        saveHTMLToTextarea:true
     });
     //提交
     $("#submit").click(function(){
@@ -64,13 +66,15 @@ function submit(){
     var article_class = $("#article_class").val();
     var title = $("#title").val();
     var abstracts = $("#abstracts").val();
+    //var html = editor.getHTML();
+    var html = $(".editormd-preview").html();
     var sure = confirm("确认操作吗?");
     if(sure){
         $.ajax({
             type: 'POST',
             url: getPath() + '/blogger/article_saveOrUpdate.htm',
             data: {articleId:articleId,articleClassId:article_class,content:content,
-                title:title,abstracts:abstracts,articleId:articleId},
+                title:title,abstracts:abstracts,articleId:articleId,html:html},
             dataType: 'json',
             async: false,
             success: function (data) {
