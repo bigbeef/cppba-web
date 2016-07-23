@@ -6,34 +6,11 @@ $(function(){
     initJqPaginator();
     //初始化文章列表
     list_article();
-    //初始化博主
-    user_load();
     $(".post").click(function(){
         var articleId = $(this).attr("articleId");
         window.location.href = "article.jsp?articleId="+articleId;
     })
 })
-
-//初始化博主
-function user_load(){
-    $.ajax({
-        type: 'POST',
-        url: getPath() + '/user_load.htm',
-        data: {userId:userId},
-        dataType: 'json',
-        async: false,
-        success: function (data) {
-            if (data.result == 1) {
-                var user = data.data.user;
-                $(".Name").text(user.nickName);
-                //$("[name=nickName]").val(user.nickName);
-                //$("[name=remark]").val(user.remark);
-            } else {
-                ajaxCommonResultHandle(data);
-            }
-        }
-    })
-}
 
 //初始化文章列表
 function list_article(){
