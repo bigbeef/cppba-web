@@ -4,7 +4,8 @@
     <div class="headCenter">
         <div class="headPortrait">
             <a href="#">
-                <img src="${pageContext.request.contextPath}/blog/images/bg2.gif"/>
+                <%--<img src="${pageContext.request.contextPath}/blog/images/bg2.gif"/>--%>
+                <img src="${pageContext.request.contextPath}/blog/images/headImg.png"/>
             </a>
         </div>
         <div class="BloggerName">
@@ -15,7 +16,7 @@
         <nav class="animated">
             <ul>
 
-                <li><a href="${pageContext.request.contextPath}/blog/pages/index.jsp">首页</a></li>
+                <li><a href="${pageContext.request.contextPath}/index.htm">首页</a></li>
 
                 <li><a href="#">归档</a></li>
 

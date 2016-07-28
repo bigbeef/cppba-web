@@ -1,7 +1,7 @@
 <html>
 <head>
     <script>
-        window.location.href = "blog/pages/index.jsp";
+        window.location.href = getPath() + "/index.htm";
     </script>
 </head>
 <body>

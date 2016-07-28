@@ -1,4 +1,4 @@
-package com.cppba.web.blog;
+package com.cppba.web.blog.webservice;
 
 import com.cppba.core.util.CommonUtil;
 import com.cppba.entity.User;
@@ -21,7 +21,7 @@ import java.util.Map;
  * email:245655812@qq.com
  * github:https://github.com/bigbeef
  */
-@Controller("blogUserAction")
+@Controller("blogWebserviceUserAction")
 public class UserAction {
 
     private static Logger logger = LoggerFactory.getLogger(UserAction.class);

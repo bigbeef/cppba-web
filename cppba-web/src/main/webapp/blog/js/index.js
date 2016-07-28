@@ -8,7 +8,7 @@ $(function(){
     list_article();
     $(".post").click(function(){
         var articleId = $(this).attr("articleId");
-        window.location.href = "article.jsp?articleId="+articleId;
+        window.location.href = getPath() + "article.htm?articleId="+articleId;
     })
 })
 
