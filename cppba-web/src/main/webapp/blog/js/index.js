@@ -1,11 +1,8 @@
-var userId = 1;
-var page = 1;
-var pageSize=10;
 $(function(){
     //初始化分页插件
     initJqPaginator();
     //初始化文章列表
-    list_article();
+    //list_article();
     $(".post").click(function(){
         var articleId = $(this).attr("articleId");
         window.location.href = getPath() + "article.htm?articleId="+articleId;
@@ -13,7 +10,7 @@ $(function(){
 })
 
 //初始化文章列表
-function list_article(){
+/*function list_article(){
     $(".main > section").remove();
     $.ajax({
         type: 'POST',
@@ -52,14 +49,14 @@ function list_article(){
             }
         }
     })
-}
+}*/
 
 //初始化分页
 function initJqPaginator(){
     $.jqPaginator('#pagination', {
-        totalPages: 100,
+        totalPages: (Math.ceil(count/pageSize)<1?1:Math.ceil(count/pageSize)),
         visiblePages: 10,
-        currentPage: 1,
+        currentPage: page,
         first:'<li class="prev"><a href="javascript:;">首页</a></li>',
         last:'<li class="prev"><a href="javascript:;">末页</a></li>',
         prev: '<li class="prev"><a href="javascript:;">上一页</a></li>',
@@ -68,7 +65,8 @@ function initJqPaginator(){
         onPageChange: function (num, type) {
             page=num;
             if(type=="change"){
-                list_article();
+                //list_article();
+                window.location.href = getPath() + "index.htm?page="+page;
             }
         }
     });

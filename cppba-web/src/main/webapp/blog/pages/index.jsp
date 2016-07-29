@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page import="com.cppba.entity.Articles" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -12,71 +13,39 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>大黄蜂博客</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/bootstrap.min.css?v=<%=version%>">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/style.css?v=<%=version%>" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/jquery-1.8.0.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/globals.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/jqPaginator.js" ></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/js.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/index.js"></script>
+	<title>${user.title}</title>
+    <meta name="keyword" content="${user.keyword}"/>
+    <meta name="description" content="${user.description}"/>
+    <link rel="stylesheet" type="text/css" href="${webPath}/blog/css/bootstrap.min.css?v=<%=version%>">
+    <link rel="stylesheet" type="text/css" href="${webPath}/blog/css/style.css?v=<%=version%>" />
+    <script type="text/javascript" src="${webPath}/blog/js/jquery-1.8.0.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${webPath}/blog/js/globals.js"></script>
+    <script type="text/javascript" src="${webPath}/blog/js/jqPaginator.js" ></script>
+    <script type="text/javascript" src="${webPath}/blog/js/js.js"></script>
+	<script type="text/javascript" src="${webPath}/blog/js/index.js"></script>
+    <script type="application/javascript">
+        var page = ${page};
+        var pageSize = ${pageSize};
+        var count = ${count};
+    </script>
 </head>
 <body>
   <div class="wapper">
 	  <%@include file="header.jsp"%>
       <div class="cppba_container">
           <div class="main">
-				<%--<section class="post" itemscope="" itemprop="blogitem">
-				    <a href="#" title="如何制作微课系列——（第一天）微课选题怎么玩？" itemprop="url">
-				    <h1 itemprop="name">如何制作微课系列——（第一天）微课选题怎么玩？</h1>
-				        <p itemprop="description">首页今天第一次接触微课，还是蛮新鲜的，非常感谢公司举办的这个活动，自己也有幸参与进来。今天是第一天，王发松老师给我们带来的精彩课程——《微课选题怎么玩》。下面是个人整理的课后笔记，希望对您有用。
-				        自己也有幸参与进来。今天是第一天，王发松老师给我们带来的精彩课程——《微课选题怎么玩》。下面是个人整理的课后笔记，希望对您有用。
-				        自己也有幸参与进来。今天是第一天，王发松老师给我们带来的精彩课程——《微课选题怎么玩》。下面是个人整理的课后笔记，希望对您有用。
-							正文一个好的微课选题要怎么包装，老师介绍需要以下3个步骤
-
-							常见误区
-							选题方法
-							让课
-						</p>
-				    <time datetime="2016-05-24T08:20:48.000Z" itemprop="datePublished">2016-05-24</time>
-				  </a>
-				</section>
-				<section class="post" itemscope="" itemprop="blogitem">
-				    <a href="#" title="如何制作微课系列——（第一天）微课选题怎么玩？" itemprop="url">
-				    <h1 itemprop="name">如何制作微课系列——（第一天）微课选题怎么玩？</h1>
-				        <p itemprop="description">首页今天第一次接触微课，还是蛮新鲜的，非常感谢公司举办的这个活动，自己也有幸参与进来。今天是第一天，王发松老师给我们带来的精彩课程——《微课选题怎么玩》。下面是个人整理的课后笔记，希望对您有用。
-							正文一个好的微课选题要怎么包装，老师介绍需要以下3个步骤
-
-							常见误区
-							选题方法
-							让课
-						</p>
-				    <time datetime="2016-05-24T08:20:48.000Z" itemprop="datePublished">2016-05-24</time>
-				  </a>
-				</section>
-				<section class="post" itemscope="" itemprop="blogitem">
-				    <a href="#" title="如何制作微课系列——（第一天）微课选题怎么玩？" itemprop="url">
-				    <h1 itemprop="name">如何制作微课系列——（第一天）微课选题怎么玩？</h1>
-				        <p itemprop="description">首页今天第一次接触微课，还是蛮新鲜的，非常感谢公司举办的这个活动，自己也有幸参与进来。今天是第一天，王发松老师给我们带来的精彩课程——《微课选题怎么玩》。下面是个人整理的课后笔记，希望对您有用。
-							正文一个好的微课选题要怎么包装，老师介绍需要以下3个步骤
-
-							常见误区
-							选题方法
-							让课
-						</p>
-				    <time datetime="2016-05-24T08:20:48.000Z" itemprop="datePublished">2016-05-24</time>
-				  </a>
-				</section>--%>
-
-				<%--<div class="SwiperBtnBox">
-					<div class="prev">Prev</div>
-					<div class="Next">Next</div>
-					<ul class="SwiperUl">
-					     <li>1</li>
-					     <li>2</li>
-					     <li>3</li>
-					</ul>
-				</div>--%>
+              <%
+                  List list = (List) request.getAttribute("articles");
+                  for (int i = 0; i < list.size(); i++) {
+                      Map map = (Map) list.get(i);
+                      Articles articles = (Articles) map.get("article");
+              %>
+              <section class="post" itemscope="" itemprop="blogitem" articleid="<%=articles.getArticleId()%>">
+                  <h1 itemprop="name"><%=articles.getTitle()%></h1>
+                  <p itemprop="description"> <%=articles.getAbstracts()%></p>
+                  <time datetime="<%=articles.getAddTime()%>" itemprop="datePublished"><%=articles.getAddTime()%></time>
+              </section>
+              <%}%>
               <div class="page_div">
                   <ul class="pagination" id="pagination"></ul>
               </div>

@@ -15,6 +15,8 @@ public class Globals {
         return "../../FileSystem";
     }
 
+    public final  static int userId = 1;
+
     //图片服务器地址
     public final static String file_server_url ="http://image.cppba.com";
 

@@ -105,7 +105,10 @@ public class UserAction {
     public void user_setting(
             HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value="nickName", defaultValue="")String nickName,
-            @RequestParam(value="remark", defaultValue="")String remark){
+            @RequestParam(value="remark", defaultValue="")String remark,
+            @RequestParam(value="title", defaultValue="")String title,
+            @RequestParam(value="keyword", defaultValue="")String keyword,
+            @RequestParam(value="description", defaultValue="")String description){
         Map<String,Object> map = new HashMap<String,Object>();
         try {
             User sessionUser = CommonUtil.getUserFromSession(request);
@@ -117,6 +120,9 @@ public class UserAction {
             }
             user.setNickName(nickName);
             user.setRemark(remark);
+            user.setTitle(title);
+            user.setKeyword(keyword);
+            user.setDescription(description);
             userService.update(user);
             CommonUtil.responseBuildJson("1","操作成功",null,response);
         }catch (Exception e){

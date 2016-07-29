@@ -37,7 +37,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <u class="forminfo">
         <input type="hidden" name="userId" value="${user.userId}"/>
-    <li><label>昵称</label><input name="nickName" type="text" class="dfinput" /><i>昵称不能超过16个字符</i></li>
+        <li><label>昵称</label><input name="nickName" type="text" class="dfinput" /><i>昵称不能超过16个字符</i></li>
+        <li><label>SEO标题</label><input name="title" type="text" class="dfinput" /></li>
+        <li><label>SEO关键字</label><input name="keyword" type="text" class="dfinput" /></li>
+        <li><label>SEO描述</label><input name="description" type="text" class="dfinput" /></li>
     <li><label>个人简介</label><textarea id="content7" name="remark" style="width:700px;height:250px;visibility:hidden;"></textarea></li>
     <li><label>&nbsp;</label><input  type="button" class="btn" value="确认保存" id="submit"/></li>
     </ul>
