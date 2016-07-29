@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : www.cppba.com
+Source Server         : bn.cppba.com
 Source Server Version : 50713
-Source Host           : www.cppba.com:3306
+Source Host           : bn.cppba.com:3306
 Source Database       : cppba
 
 Target Server Type    : MYSQL
 Target Server Version : 50713
 File Encoding         : 65001
 
-Date: 2016-07-28 18:34:50
+Date: 2016-07-30 00:04:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -114,14 +114,17 @@ CREATE TABLE `user` (
   `password` varchar(32) DEFAULT NULL COMMENT '密码',
   `nick_name` varchar(16) DEFAULT NULL COMMENT '昵称',
   `remark` text COMMENT '个人简介',
+  `title` varchar(64) DEFAULT NULL COMMENT '页面标题',
+  `keyword` varchar(128) DEFAULT NULL COMMENT '关键字',
+  `description` varchar(128) DEFAULT NULL COMMENT '描述',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '2016-07-18 22:36:46', '0', 'admin', '21232f297a57a5a743894a0e4a801fc3', '大黄蜂', '大黄蜂');
-INSERT INTO `user` VALUES ('2', '2016-07-18 22:37:09', '0', 'test', '098f6bcd4621d373cade4e832627b4f6', 'test', 'test');
+INSERT INTO `user` VALUES ('1', '2016-07-18 22:36:46', '0', 'admin', '21232f297a57a5a743894a0e4a801fc3', '大黄蜂', '大黄蜂', '大黄蜂的独立博客', '大黄蜂,大黄蜂coder,博客,java博客,大黄蜂的博客', '大黄蜂,大黄蜂coder,博客,java博客,大黄蜂的博客');
+INSERT INTO `user` VALUES ('2', '2016-07-18 22:37:09', '0', 'test', '098f6bcd4621d373cade4e832627b4f6', 'test', 'test', null, null, null);
 
 -- ----------------------------
 -- Table structure for user_role
