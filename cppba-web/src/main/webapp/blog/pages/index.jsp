@@ -14,7 +14,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<meta http-equiv="expires" content="0">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>${user.title}</title>
-    <meta name="keyword" content="${user.keyword}"/>
+    <meta name="keywords" content="${user.keyword}"/>
     <meta name="description" content="${user.description}"/>
     <link rel="stylesheet" type="text/css" href="${webPath}/blog/css/bootstrap.min.css?v=<%=version%>">
     <link rel="stylesheet" type="text/css" href="${webPath}/blog/css/style.css?v=<%=version%>" />
