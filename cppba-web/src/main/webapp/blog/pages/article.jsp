@@ -18,6 +18,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/editormd.css?v=<%=version%>" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/planeui.min.css?v=<%=version%>" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/style.css?v=<%=version%>" />
+    <style type="text/css">
+        
+    </style>
     <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/jquery-1.8.0.js?v=<%=version%>"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/globals.js?v=<%=version%>"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/js.js?v=<%=version%>"></script>

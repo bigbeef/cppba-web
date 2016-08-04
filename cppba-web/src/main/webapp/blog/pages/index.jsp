@@ -18,6 +18,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <meta name="description" content="${user.description}"/>
     <link rel="stylesheet" type="text/css" href="${webPath}/blog/css/bootstrap.min.css?v=<%=version%>">
     <link rel="stylesheet" type="text/css" href="${webPath}/blog/css/style.css?v=<%=version%>" />
+    <style type="text/css">
+        .post h1{font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;font-size: 1.5em;}
+    </style>
     <script type="text/javascript" src="${webPath}/blog/js/jquery-1.8.0.js?v=<%=version%>"></script>
     <script type="text/javascript" src="${webPath}/blog/js/globals.js"></script>
     <script type="text/javascript" src="${webPath}/blog/js/jqPaginator.js" ></script>
