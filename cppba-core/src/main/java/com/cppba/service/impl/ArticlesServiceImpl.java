@@ -1,6 +1,7 @@
 package com.cppba.service.impl;
 
 import com.cppba.core.bean.PageEntity;
+import com.cppba.core.util.CommonUtil;
 import com.cppba.dao.ArticlesDao;
 import com.cppba.dto.ArticlesDto;
 import com.cppba.dto.BaseDto;
@@ -65,10 +66,19 @@ public class ArticlesServiceImpl implements ArticlesService{
 			hql += " and articles.title like :likeName ";
 			params.put("likeName","%"+likeName+"%");
 		}
+
 		//userId
-		if(articles.getUserId()!=null && ObjectUtils.notEqual(articles.getUserId(),0L)){
+		Long userId = articles.getUserId();
+		if(!CommonUtil.isLongNullOrZero(userId)){
 			hql += " and articles.userId = :userId ";
-			params.put("userId",articles.getUserId());
+			params.put("userId",userId);
+		}
+
+		//articleClassId
+		Long articleClassId = articles.getArticleClassId();
+		if(!CommonUtil.isLongNullOrZero(articleClassId)){
+			hql += " and articles.articleClassId = :articleClassId ";
+			params.put("articleClassId",articleClassId);
 		}
 
 		//未被删除的

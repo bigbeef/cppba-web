@@ -47,16 +47,20 @@ public class CommonAction {
     @RequestMapping("/qrcode_image.htm")
     public void qrcode_image(
             HttpServletRequest request,HttpServletResponse response,
-            @RequestParam(value="text", defaultValue="")String text) throws IOException {
+            @RequestParam(value="text", defaultValue="")String text){
+        try{
+            response.setHeader("Pragma", "No-cache");
+            response.setHeader("Cache-Control", "no-cache");
+            response.setDateHeader("Expires", 0);
+            response.setContentType("image/jpeg");
 
-        response.setHeader("Pragma", "No-cache");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setDateHeader("Expires", 0);
-        response.setContentType("image/jpeg");
+            BufferedImage image = QRCodeUtil.QRCodeCreate(text, 250, 250);
 
-        BufferedImage image = QRCodeUtil.QRCodeCreate(text, 250, 250);
+            ImageIO.write(image, "png",response.getOutputStream());
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+        }
 
-        ImageIO.write(image, "png",response.getOutputStream());
     }
     
      //下载二维码
@@ -74,21 +78,25 @@ public class CommonAction {
     // 生成图片验证码
     @RequestMapping("/auth_image.htm")
     public void auth_Image(
-            HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setHeader("Pragma", "No-cache");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setDateHeader("Expires", 0);
-        response.setContentType("image/jpeg");
+            HttpServletRequest request, HttpServletResponse response){
+        try{
+            response.setHeader("Pragma", "No-cache");
+            response.setHeader("Cache-Control", "no-cache");
+            response.setDateHeader("Expires", 0);
+            response.setContentType("image/jpeg");
 
-        // 生成随机字串
-        String verifyCode = VerifyCodeUtils.generateVerifyCode(4);
-        // 存入会话session
-        HttpSession session = CommonUtil.getSession(request);
-        session.setAttribute("rand", verifyCode.toLowerCase());
-        // 生成图片
-        int w = 200, h = 80;
-        VerifyCodeUtils.outputImage(w, h, response.getOutputStream(),
-                verifyCode);
+            // 生成随机字串
+            String verifyCode = VerifyCodeUtils.generateVerifyCode(4);
+            // 存入会话session
+            HttpSession session = CommonUtil.getSession(request);
+            session.setAttribute("rand", verifyCode.toLowerCase());
+            // 生成图片
+            int w = 200, h = 80;
+            VerifyCodeUtils.outputImage(w, h, response.getOutputStream(),
+                    verifyCode);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+        }
     }
 
     //图片上传

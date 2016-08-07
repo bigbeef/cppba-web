@@ -1,3 +1,4 @@
+var articleClassId = getQueryString("articleClassId") | 0;
 $(function(){
     //初始化分页插件
     initJqPaginator();
@@ -7,7 +8,15 @@ $(function(){
         var articleId = $(this).attr("articleId");
         window.location.href = getPath() + "article.htm?articleId="+articleId;
     })
+    $(".mainMenuTitle").click(function(){
+        articleClassId = $(this).attr("articleClassId");
+        reload_page();
+    })
 })
+
+function reload_page(){
+    window.location.href = getPath() + "index.htm?page="+page+"&articleClassId="+articleClassId;
+}
 
 //初始化文章列表
 /*function list_article(){
@@ -66,7 +75,7 @@ function initJqPaginator(){
             page=num;
             if(type=="change"){
                 //list_article();
-                window.location.href = getPath() + "index.htm?page="+page;
+                reload_page();
             }
         }
     });

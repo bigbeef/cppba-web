@@ -1,4 +1,4 @@
-var articleId = GetQueryString("articleId")|0;
+var articleId = getQueryString("articleId")|0;
 var title;
 $(function (){
     //初始化文章

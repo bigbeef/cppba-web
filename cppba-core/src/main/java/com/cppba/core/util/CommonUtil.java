@@ -107,6 +107,11 @@ public class CommonUtil {
         return integer==null || !ObjectUtils.notEqual(integer,0);
     }
 
+    //判断Long为空或者等于0
+    public static boolean isLongNullOrZero(Long l){
+        return l==null || !ObjectUtils.notEqual(l,0L);
+    }
+
     //获取项目根路径
     public static String getBasePath(HttpServletRequest request){
         String path = request.getContextPath();

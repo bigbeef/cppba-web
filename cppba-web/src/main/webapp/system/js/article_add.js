@@ -6,7 +6,7 @@
  */
 var editor,articleId,markdown;
 $(function () {
-    articleId = GetQueryString("articleId") |0;
+    articleId = getQueryString("articleId") |0;
     
     
     //加载文章分类列表

@@ -3,6 +3,7 @@ package com.cppba.web.blog.page;
 import com.cppba.core.bean.JModelAndView;
 import com.cppba.core.bean.PageEntity;
 import com.cppba.core.constant.Globals;
+import com.cppba.dto.ArticleClassDto;
 import com.cppba.dto.ArticlesDto;
 import com.cppba.entity.ArticleClass;
 import com.cppba.entity.Articles;
@@ -40,7 +41,8 @@ public class IndexAction {
     public ModelAndView index(
             HttpServletRequest request, HttpServletResponse response,
             @RequestParam(value="page", defaultValue="1")int page,
-            @RequestParam(value="pageSize", defaultValue="10")int pageSize) {
+            @RequestParam(value="pageSize", defaultValue="10")int pageSize,
+            @RequestParam(value="articleClassId", defaultValue="0")long articleClassId) {
         ModelAndView mv = null;
         try {
             mv = new JModelAndView("/blog/pages/index.jsp",userService.findById(Globals.userId),request);
@@ -49,6 +51,7 @@ public class IndexAction {
 
             ArticlesDto articlesDto = new ArticlesDto();
             Articles articles = new Articles();
+            articles.setArticleClassId(articleClassId);
             articlesDto.setArticles(articles);
             articlesDto.setPage(page);
             articlesDto.setPageSize(pageSize);
@@ -64,6 +67,16 @@ public class IndexAction {
             }
             mv.addObject("articles",list);
             mv.addObject("count",pe.getCount());
+
+            ArticleClassDto articleClassDto = new ArticleClassDto();
+            ArticleClass articleClass = new ArticleClass();
+            articleClassDto.setArticleClass(articleClass);
+            articleClassDto.setPage(page);
+            articleClassDto.setPageSize(pageSize);
+            PageEntity<ArticleClass> peArticleClass = articleClassService.query(articleClassDto);
+            List<ArticleClass> articleClassList = peArticleClass.getList();
+            mv.addObject("articleClasses",articleClassList);
+
         } catch (Exception e) {
             mv = new JModelAndView("/blog/pages/404.jsp");
             logger.error(e.getMessage(), e);

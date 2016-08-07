@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
 <%@ page import="com.cppba.entity.Articles" %>
+<%@ page import="com.cppba.entity.ArticleClass" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -19,7 +20,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <link rel="stylesheet" type="text/css" href="${webPath}/blog/css/bootstrap.min.css?v=<%=version%>">
     <link rel="stylesheet" type="text/css" href="${webPath}/blog/css/style.css?v=<%=version%>" />
     <style type="text/css">
-        .post h1{font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;font-size: 1.5em;}
+        body{font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;}
+        .post h1{font-size: 1.5em;}
     </style>
     <script type="text/javascript" src="${webPath}/blog/js/jquery-1.8.0.js?v=<%=version%>"></script>
     <script type="text/javascript" src="${webPath}/blog/js/globals.js"></script>
@@ -56,6 +58,29 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
           <div class="asidepart">
               <ul class="mainMenu">
                   <li>
+                      <div class="mainMenuTitle" articleClassId="0">全部</div>
+                      <%--<ul class="innerMenu">
+                          <li><a href="#">分类一Java基础与提高干货系列Java基础与提高干货系列</a></li>
+                          <li><a href="#">分类一</a></li>
+                          <li><a href="#">分类一</a></li>
+                          <li><a href="#">分类一</a></li>
+                      </ul>--%>
+                  </li>
+                  <%
+                      List<ArticleClass> articleClassList = (List) request.getAttribute("articleClasses");
+                      for (ArticleClass articleClass : articleClassList) {
+                  %>
+                      <li>
+                          <div class="mainMenuTitle" articleClassId="<%=articleClass.getArticleClassId()%>"><%=articleClass.getName()%></div>
+                          <%--<ul class="innerMenu">
+                              <li><a href="#">分类一Java基础与提高干货系列Java基础与提高干货系列</a></li>
+                              <li><a href="#">分类一</a></li>
+                              <li><a href="#">分类一</a></li>
+                              <li><a href="#">分类一</a></li>
+                          </ul>--%>
+                      </li>
+                  <%}%>
+                  <%--<li>
                       <div class="mainMenuTitle">Java基础与提高干货系列Java基础与提高干货系列Java基础与提高干货系列</div>
                       <ul class="innerMenu">
                       	 <li><a href="#">分类一Java基础与提高干货系列Java基础与提高干货系列</a></li>
@@ -81,7 +106,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                       	 <li><a href="#">分类一</a></li>
                       	 <li><a href="#">分类一</a></li>
                       </ul>
-                  </li>
+                  </li>--%>
               </ul>
           </div>
       </div>

@@ -10,7 +10,7 @@
         </div>
         <div class="BloggerName">
             <h1 class="Name">大黄蜂</h1>
-            <h1 class="sendWord">爱编程爱生活</h1>
+            <h1 class="sendWord">冰冻三尺非一日之寒</h1>
         </div>
 
         <nav class="animated">
@@ -18,11 +18,11 @@
 
                 <li><a href="${pageContext.request.contextPath}/index.htm">首页</a></li>
 
-                <li><a href="#">归档</a></li>
+               <%-- <li><a href="#">归档</a></li>--%>
 
-                <li><a href="#">分类</a></li>
+                <%--<li><a href="#">分类</a></li>--%>
 
-                <li><a href="#">时光机</a></li>
+                <%--<li><a href="#">时光机</a></li>--%>
 
                 <li><a href="${pageContext.request.contextPath}/system/blogger/main.jsp">登陆</a></li>
                 <li>
