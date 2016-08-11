@@ -71,8 +71,6 @@ public class IndexAction {
             ArticleClassDto articleClassDto = new ArticleClassDto();
             ArticleClass articleClass = new ArticleClass();
             articleClassDto.setArticleClass(articleClass);
-            articleClassDto.setPage(page);
-            articleClassDto.setPageSize(pageSize);
             PageEntity<ArticleClass> peArticleClass = articleClassService.query(articleClassDto);
             List<ArticleClass> articleClassList = peArticleClass.getList();
             mv.addObject("articleClasses",articleClassList);
