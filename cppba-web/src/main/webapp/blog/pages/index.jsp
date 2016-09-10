@@ -19,10 +19,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <meta name="description" content="${user.description}"/>
     <link rel="stylesheet" type="text/css" href="${webPath}/blog/css/bootstrap.min.css?v=<%=version%>">
     <link rel="stylesheet" type="text/css" href="${webPath}/blog/css/style.css?v=<%=version%>" />
-    <style type="text/css">
-        body{font-family: "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;}
-        .post h1{font-size: 1.5em;}
-    </style>
     <script type="text/javascript" src="${webPath}/blog/js/jquery-1.8.0.js?v=<%=version%>"></script>
     <script type="text/javascript" src="${webPath}/blog/js/globals.js"></script>
     <script type="text/javascript" src="${webPath}/blog/js/jqPaginator.js" ></script>
@@ -59,12 +55,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
               <ul class="mainMenu">
                   <li>
                       <div class="mainMenuTitle" articleClassId="0">全部</div>
-                      <%--<ul class="innerMenu">
-                          <li><a href="#">分类一Java基础与提高干货系列Java基础与提高干货系列</a></li>
-                          <li><a href="#">分类一</a></li>
-                          <li><a href="#">分类一</a></li>
-                          <li><a href="#">分类一</a></li>
-                      </ul>--%>
                   </li>
                   <%
                       List<ArticleClass> articleClassList = (List) request.getAttribute("articleClasses");
@@ -72,12 +62,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                   %>
                       <li>
                           <div class="mainMenuTitle" articleClassId="<%=articleClass.getArticleClassId()%>"><%=articleClass.getName()%></div>
-                          <%--<ul class="innerMenu">
-                              <li><a href="#">分类一Java基础与提高干货系列Java基础与提高干货系列</a></li>
-                              <li><a href="#">分类一</a></li>
-                              <li><a href="#">分类一</a></li>
-                              <li><a href="#">分类一</a></li>
-                          </ul>--%>
                       </li>
                   <%}%>
                   <%--<li>
@@ -108,6 +92,14 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                       </ul>
                   </li>--%>
               </ul>
+              <div class="cppba_linkslist">
+                  <p class="asidetitle">友情链接</p>
+                  <ul>
+                      <li>
+                          <a href="http://crossoverjie.top" target="_blank" title="crossoverjie">crossoverjie</a>
+                      </li>
+                  </ul>
+              </div>
           </div>
       </div>
       <div class="footer"></div>

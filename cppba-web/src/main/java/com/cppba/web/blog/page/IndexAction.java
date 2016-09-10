@@ -89,6 +89,12 @@ public class IndexAction {
         ModelAndView mv = null;
         try {
             mv = new JModelAndView("/blog/pages/article.jsp",userService.findById(Globals.userId),request);
+            ArticleClassDto articleClassDto = new ArticleClassDto();
+            ArticleClass articleClass = new ArticleClass();
+            articleClassDto.setArticleClass(articleClass);
+            PageEntity<ArticleClass> peArticleClass = articleClassService.query(articleClassDto);
+            List<ArticleClass> articleClassList = peArticleClass.getList();
+            mv.addObject("articleClasses",articleClassList);
         } catch (Exception e) {
             mv = new JModelAndView("/blog/pages/404.jsp");
             logger.error(e.getMessage(), e);

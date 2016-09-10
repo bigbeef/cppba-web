@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page language="java" import="com.cppba.entity.ArticleClass" pageEncoding="UTF-8" %>
+<%@ page import="java.util.List" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -18,9 +19,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/editormd.css?v=<%=version%>" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/planeui.min.css?v=<%=version%>" />
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/blog/css/style.css?v=<%=version%>" />
-    <style type="text/css">
-        
-    </style>
     <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/jquery-1.8.0.js?v=<%=version%>"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/globals.js?v=<%=version%>"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/js.js?v=<%=version%>"></script>
@@ -84,6 +82,17 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
           <div class="asidepart">
               <ul class="mainMenu">
                   <li>
+                      <div class="mainMenuTitle" articleClassId="0">全部</div>
+                  </li>
+                  <%
+                      List<ArticleClass> articleClassList = (List) request.getAttribute("articleClasses");
+                      for (ArticleClass articleClass : articleClassList) {
+                  %>
+                  <li>
+                      <div class="mainMenuTitle" articleClassId="<%=articleClass.getArticleClassId()%>"><%=articleClass.getName()%></div>
+                  </li>
+                  <%}%>
+                  <%--<li>
                       <div class="mainMenuTitle">Java基础与提高干货系列Java基础与提高干货系列Java基础与提高干货系列</div>
                       <ul class="innerMenu">
                       	 <li><a href="#">分类一Java基础与提高干货系列Java基础与提高干货系列</a></li>
@@ -109,8 +118,16 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                       	 <li><a href="#">分类一</a></li>
                       	 <li><a href="#">分类一</a></li>
                       </ul>
-                  </li>
+                  </li>--%>
               </ul>
+              <div class="cppba_linkslist">
+                  <p class="asidetitle">友情链接</p>
+                  <ul>
+                      <li>
+                          <a href="http://crossoverjie.top" target="_blank" title="crossoverJie">crossoverJie</a>
+                      </li>
+                  </ul>
+              </div>
           </div>
       </div>
       <div class="footer"></div>
