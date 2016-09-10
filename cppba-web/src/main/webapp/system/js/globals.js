@@ -11,7 +11,7 @@ function getPath() {
 }
 
 //获取请求URL参数
-function GetQueryString(name){
+function getQueryString(name){
     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
     if(r!=null){
