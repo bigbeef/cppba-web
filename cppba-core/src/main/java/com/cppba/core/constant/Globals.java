@@ -32,4 +32,6 @@ public class Globals {
     public static String accessKeyId = "KCsxSw9uWTJSz90h";
     public static String accessKeySecret = "JMlEEkI3nlXF1rkdBDzk9RtH1X5aD3";
     public static String bucketName = "hk-filesystem";
+
+    public static String template_type = "blog";
 }

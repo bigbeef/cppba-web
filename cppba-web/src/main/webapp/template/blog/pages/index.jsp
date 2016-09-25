@@ -6,7 +6,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
-<%@include file="global.jsp"%>
+<%@include file="/common/page/global.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head href="<%=basePath%>" data='${pageContext.request.contextPath}'>
@@ -17,13 +17,13 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<title>${user.title}</title>
     <meta name="keywords" content="${user.keyword}"/>
     <meta name="description" content="${user.description}"/>
-    <link rel="stylesheet" type="text/css" href="${webPath}/blog/css/bootstrap.min.css?v=<%=version%>">
-    <link rel="stylesheet" type="text/css" href="${webPath}/blog/css/style.css?v=<%=version%>" />
-    <script type="text/javascript" src="${webPath}/blog/js/jquery-1.8.0.js?v=<%=version%>"></script>
-    <script type="text/javascript" src="${webPath}/blog/js/globals.js"></script>
-    <script type="text/javascript" src="${webPath}/blog/js/jqPaginator.js" ></script>
-    <script type="text/javascript" src="${webPath}/blog/js/js.js"></script>
-	<script type="text/javascript" src="${webPath}/blog/js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="${webPath}/common/css/bootstrap.min.css?v=<%=version%>">
+    <link rel="stylesheet" type="text/css" href="${webPath}/template/blog/css/style.css?v=<%=version%>" />
+    <script type="text/javascript" src="${webPath}/common/js/jquery-1.8.0.js?v=<%=version%>"></script>
+    <script type="text/javascript" src="${webPath}/common/js/globals.js"></script>
+    <script type="text/javascript" src="${webPath}/common/js/jqPaginator.js" ></script>
+    <script type="text/javascript" src="${webPath}/template/blog/js/js.js"></script>
+	<script type="text/javascript" src="${webPath}/template/blog/js/index.js"></script>
     <script type="application/javascript">
         var page = ${page};
         var pageSize = ${pageSize};

@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/system/css/style.css?v=<%=version%>">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/system/css/select.css?v=<%=version%>"  />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/system/css/editormd.css?v=<%=version%>" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/common/css/editormd.min.css?v=<%=version%>" />
     <style type="text/css">
         #markdown select{opacity:1;filter:alpha(opacity=1);}
         #markdown li{margin-bottom: 0px;}

@@ -45,7 +45,7 @@ public class IndexAction {
             @RequestParam(value="articleClassId", defaultValue="0")long articleClassId) {
         ModelAndView mv = null;
         try {
-            mv = new JModelAndView("/blog/pages/index.jsp",userService.findById(Globals.userId),request);
+            mv = new JModelAndView("/pages/index.jsp",userService.findById(Globals.userId),request);
             mv.addObject("page",page);
             mv.addObject("pageSize",pageSize);
 
@@ -76,7 +76,7 @@ public class IndexAction {
             mv.addObject("articleClasses",articleClassList);
 
         } catch (Exception e) {
-            mv = new JModelAndView("/blog/pages/404.jsp");
+            mv = new JModelAndView("/pages/404.jsp");
             logger.error(e.getMessage(), e);
         }
         return mv;
@@ -88,7 +88,7 @@ public class IndexAction {
             HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mv = null;
         try {
-            mv = new JModelAndView("/blog/pages/article.jsp",userService.findById(Globals.userId),request);
+            mv = new JModelAndView("/pages/article.jsp",userService.findById(Globals.userId),request);
             ArticleClassDto articleClassDto = new ArticleClassDto();
             ArticleClass articleClass = new ArticleClass();
             articleClassDto.setArticleClass(articleClass);
@@ -96,7 +96,7 @@ public class IndexAction {
             List<ArticleClass> articleClassList = peArticleClass.getList();
             mv.addObject("articleClasses",articleClassList);
         } catch (Exception e) {
-            mv = new JModelAndView("/blog/pages/404.jsp");
+            mv = new JModelAndView("/pages/404.jsp");
             logger.error(e.getMessage(), e);
         }
         return mv;

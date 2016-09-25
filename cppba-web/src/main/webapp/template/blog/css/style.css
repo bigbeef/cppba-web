@@ -62,7 +62,7 @@ ul.innerMenu > li > a{ display: block; width: 100%; height: 100%; font-size: 90%
 .mainMenuTitle:hover{ cursor: pointer;}
 .mainMenuTitle:hover{ color:#e9cd4c;}
 ul.innerMenu > li > a:hover{ color:#292a2a;}
-.footer{ width: 100%; height: 200px;background: #1f1f1f;}
+.footer{ width: 100%; /*height: 200px;*/background: #1f1f1f;}
 .SwiperBtnBox{ width: 100%; height: 44px; background:#ffffff; overflow: hidden; text-align: center;}
 /*.prev,.Next{ display: inline-block; width: 90px; height: 44px; color:#2ca6cb; line-height: 44px; text-align: center;}*/
 .Next:after { content: ">"; font-weight: bold; font-size: 130%; vertical-align: middle;} 

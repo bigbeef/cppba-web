@@ -1,11 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
-<script type="text/javascript" src="${pageContext.request.contextPath}/blog/js/header.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/template/blog/js/header.js"></script>
 <div class="header">
     <div class="headCenter">
         <div class="headPortrait">
             <a href="#">
                 <%--<img src="${pageContext.request.contextPath}/blog/images/bg2.gif"/>--%>
-                <img src="${pageContext.request.contextPath}/blog/images/headImg.png"/>
+                <img src="${pageContext.request.contextPath}/template/blog/images/headImg.png"/>
             </a>
         </div>
         <div class="BloggerName">
