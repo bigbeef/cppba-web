@@ -34,4 +34,5 @@ public class Globals {
     public static String bucketName = "hk-filesystem";
 
     public static String template_type = "blog";
+    //public static String template_type = "txb";
 }
