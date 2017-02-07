@@ -1,5 +1,8 @@
 package com.cppba.core.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -12,7 +15,27 @@ import java.io.IOException;
  */ 
 public class ImgCompressUtil {
 
+	private static Logger logger = LoggerFactory.getLogger(ImgCompressUtil.class);
 	
+    /**
+     * 生成一张缩略图
+     * @param fileName 压缩文件("c:\\1.png")
+     * @param type 压缩类型(1.中等缩略图：压缩为原来一半，2.小型缩略图:压缩为原来1/4)
+     */
+	public static void createImgCompress(String fileName,int type){
+		if(type==1){
+			BufferedImage img = ImgCompressUtil.resize(fileName, 0.5);
+			ImgCompressUtil.writeToFile(fileName+"_middle.png", img);
+			logger.info("{}小型缩略图生成成功",fileName);
+		}else if(type==2){
+			BufferedImage img = ImgCompressUtil.resize(fileName, 0.25);
+			ImgCompressUtil.writeToFile(fileName+"_small.png", img);
+			logger.info("{}中型缩略图生成成功",fileName);
+		}else{
+			throw new RuntimeException("没有找到此压缩类型："+type);
+		}
+	}
+
 	/**
 	 * 强制压缩/放大图片到固定的大小 
 	 * @param fileName 压缩文件("c:\\1.png")
