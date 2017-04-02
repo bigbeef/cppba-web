@@ -157,4 +157,48 @@
             <version>2.2.3</version>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <!-- 开发环境 -->
+        <profile>
+            <id>dev</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>dev</value>
+                </property>
+            </activation>
+        </profile>
+        <!-- 线上环境 -->
+        <profile>
+            <id>online</id>
+            <activation>
+                <property>
+                    <name>env</name>
+                    <value>online</value>
+                </property>
+            </activation>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <!-- maven 打包替换配置插件 -->
+            <plugin>
+                <groupId>com.juvenxu.portable-config-maven-plugin</groupId>
+                <artifactId>portable-config-maven-plugin</artifactId>
+                <version>1.1.5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>replace-package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <portableConfig>src/main/resources/portable/config-${env}.xml</portableConfig>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

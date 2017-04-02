@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 注意：当替换的内容出现XML特殊字符时，请使用<![CDATA[...]]> -->
+<!-- 注意：值内容尽量不要换行 -->
+<portable-config>
+    <config-file path="WEB-INF/classes/config/jdbc.properties">
+        <replace key="jdbc.url"><![CDATA[jdbc:mysql://127.0.0.1:3306/cppba?useUnicode=true&amp;amp;characterEncoding=UTF-8&amp;amp;autoReconnect=true]]></replace>
+        <replace key="jdbc.user">root</replace>
+        <replace key="jdbc.password">root</replace>
+    </config-file>
+</portable-config>

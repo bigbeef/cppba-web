@@ -21,20 +21,11 @@ public class HibernateConfiguration {
     public DataSource dataSource() throws SQLException {
         DruidDataSource druidDataSource = new DruidDataSource();
         //正式环境（修改jdbc.properties中jdbc.environment.real属性）
-        if(propertySourcesPropertyResolver.getProperty("jdbc.environment.real").equals("true")){
-            druidDataSource.setUrl(propertySourcesPropertyResolver.getProperty("jdbc.real.url"));
+            druidDataSource.setUrl(propertySourcesPropertyResolver.getProperty("jdbc.url"));
             druidDataSource.setUsername(propertySourcesPropertyResolver
-                    .getProperty("jdbc.real.user"));
+                    .getProperty("jdbc.user"));
             druidDataSource.setPassword(propertySourcesPropertyResolver
-                    .getProperty("jdbc.real.password"));
-        }else{
-            //测试环境
-            druidDataSource.setUrl(propertySourcesPropertyResolver.getProperty("jdbc.test.url"));
-            druidDataSource.setUsername(propertySourcesPropertyResolver
-                    .getProperty("jdbc.test.user"));
-            druidDataSource.setPassword(propertySourcesPropertyResolver
-                    .getProperty("jdbc.test.password"));
-        }
+                    .getProperty("jdbc.password"));
         druidDataSource.setInitialSize(1);
         druidDataSource.setMinIdle(1);
         druidDataSource.setMaxActive(20);

@@ -29,8 +29,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         MutablePropertySources propertySources = new MutablePropertySources();
         try {
             //此处添加要初始化的资源文件
-            propertySources.addLast(new ResourcePropertySource("jdbc","jdbc.properties"));
-            //propertySources.addLast(new ResourcePropertySource("log4j","log4j.properties"));
+            propertySources.addLast(new ResourcePropertySource("jdbc", "config/jdbc.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
