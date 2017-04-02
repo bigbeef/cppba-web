@@ -14,10 +14,10 @@ javaEE的开发者可以当做学习项目，欢迎大家提出意见，邮箱:2
 ## 打包
 ```$xslt
 //开发环境打包
-mvn clean package -DskipTests -Denv=online
-
-//测试环境打包
 mvn clean package -DskipTests -Denv=dev
+
+//正式环境打包
+mvn clean package -DskipTests -Denv=online
 
 ```
  	
