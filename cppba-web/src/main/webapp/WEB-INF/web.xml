@@ -42,6 +42,15 @@
         <url-pattern>*.htm</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ureportServlet</servlet-name>
+        <servlet-class>com.bstek.ureport.console.UReportServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ureportServlet</servlet-name>
+        <url-pattern>/ureport/*</url-pattern>
+    </servlet-mapping>
+
     <!--xml文件位置声明-->
     <context-param>
         <param-name>contextConfigLocation</param-name>

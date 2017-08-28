@@ -16,6 +16,7 @@
     <!-- 添加注解驱动 -->
     <mvc:annotation-driven/>
     
+    <import resource="classpath:ureport-console-context.xml" />
 </beans>
         <!--
         开发者
